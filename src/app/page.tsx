@@ -9,6 +9,9 @@ import InquirySection from "@/components/home/InquirySection";
 
 import SeoBanner from "@/components/home/SeoBanner";
 import ProcessSection from "@/components/home/ProcessSection";
+
+import ContactSection from "@/components/home/ContactSection";
+
 export const metadata: Metadata = {
   title: "MADE BY YOUNG | 맞춤형 홈페이지 제작",
 
@@ -33,6 +36,8 @@ export default function HomePage() {
 
         <InquirySection />
         <ProcessSection />
+
+        <ContactSection />
       </main>
     </>
   );

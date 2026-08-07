@@ -67,19 +67,43 @@ const INQUIRIES = [
 ];
 
 export default function InquirySection() {
-  // 동일한 목록을 두 번 이어 붙여 끊김 없는 무한 루프
+  // 같은 목록을 2번 연결해서 무한 스크롤
   const loopItems = [...INQUIRIES, ...INQUIRIES];
 
   return (
-    <section className="relative overflow-hidden bg-[#f7f7f7]">
+    <section
+      className="
+        relative
+        overflow-hidden
+        bg-[#141414]
+      "
+    >
+      {/* 은은한 브랜드 컬러 배경 */}
+
       <div
         className="
+          pointer-events-none
+          absolute
+          -left-[180px]
+          -top-[180px]
+          h-[430px]
+          w-[430px]
+          rounded-full
+          bg-[#de1334]/[0.07]
+          blur-[20px]
+        "
+      />
+
+      <div
+        className="
+          relative
+          z-10
           mx-auto
           grid
           w-full
-          max-w-[1360px]
+          max-w-[1200px]
           grid-cols-1
-          lg:h-[360px]
+
           lg:grid-cols-[0.72fr_1.28fr]
         "
       >
@@ -91,13 +115,17 @@ export default function InquirySection() {
           className="
             flex
             items-center
-            bg-[#f7f7f7]
+            bg-[#141414]
+
             px-6
-            py-10
+            py-12
+
             md:px-10
+
             lg:h-[360px]
             lg:px-14
-            lg:py-8
+            lg:py-10
+
             xl:pl-16
             xl:pr-14
           "
@@ -108,11 +136,14 @@ export default function InquirySection() {
             <h2
               className="
                 break-keep
+
                 text-[31px]
                 font-bold
                 leading-[1.13]
                 tracking-[-0.055em]
-                text-[#171717]
+
+                text-white
+
                 sm:text-[35px]
                 md:text-[38px]
               "
@@ -122,80 +153,57 @@ export default function InquirySection() {
               <span className="text-[#de1334]">하나를 제대로 만듭니다.</span>
             </h2>
 
-            {/* DESCRIPTION */}
-
-            <p
-              className="
-                mt-4
-                break-keep
-                text-[14px]
-                font-medium
-                leading-[1.7]
-                text-[#666]
-                md:text-[15px]
-              "
-            >
-              상담부터 기획, 디자인, 개발,
-              <br />
-              <strong className="font-bold text-[#222]">
-                오픈까지 모든 과정을 직접 진행합니다.
-              </strong>
-            </p>
-
             {/* LIMITED PROJECT */}
 
             <div
               className="
-                mt-5
+                mt-6
                 max-w-[400px]
+
                 border-t
-                border-black/[0.1]
-                pt-4
+                border-white/[0.1]
+
+                pt-5
               "
             >
-              <div className="flex items-center justify-between gap-5">
-                <div>
-                  {/* LABEL */}
+              <div className="flex items-center gap-3">
+                {/* NUMBER */}
 
-                  <div className="mb-3 flex items-center gap-2">
-                    <span className="relative flex h-2.5 w-2.5">
-                      <span
-                        className="
-                    absolute
-                    inline-flex
-                    h-full
-                    w-full
-                    animate-ping
-                    rounded-full
-                    bg-[#de1334]
-                    opacity-30
+                <span
+                  className="
+                    text-[13px]
+                    font-bold
+                    text-[#de1334]
                   "
-                      />
+                >
+                  ONLY
+                </span>
 
-                      <span
-                        className="
-                    relative
-                    inline-flex
-                    h-2.5
-                    w-2.5
-                    rounded-full
-                    bg-[#de1334]
+                <div className="h-[12px] w-px bg-white/[0.14]" />
+
+                <p
+                  className="
+                    text-[16px]
+                    font-bold
+                    tracking-[-0.035em]
+
+                    text-white
                   "
-                      />
-                    </span>
-                  </div>
-                  <p
-                    className="
-                      text-[17px]
-                      font-bold
-                      tracking-[-0.035em]
-                      text-[#171717]
-                    "
-                  >
-                    월 소수 프로젝트만 진행
-                  </p>
-                </div>
+                >
+                  월 소수 프로젝트만 진행
+                </p>
               </div>
+
+              <p
+                className="
+                  mt-2
+                  text-[12px]
+                  font-medium
+                  text-white/35
+                "
+              >
+                하나의 프로젝트에 더 집중하기 위해 제한적으로 진행합니다.
+              </p>
             </div>
           </div>
         </div>
@@ -207,26 +215,54 @@ export default function InquirySection() {
         <div
           className="
             relative
+
             h-[330px]
             w-full
             overflow-hidden
-            bg-white
+
+            border-l
+            border-white/[0.06]
+
+            bg-[#191919]
+
             lg:h-[360px]
           "
         >
-          {/* TOP FADE */}
+          {/* 아주 은은한 상단 빛 */}
 
           <div
             className="
               pointer-events-none
               absolute
               left-0
+              top-0
+              z-10
+
+              h-[120px]
+              w-full
+
+              bg-gradient-to-b
+              from-white/[0.015]
+              to-transparent
+            "
+          />
+
+          {/* TOP FADE */}
+
+          <div
+            className="
+              pointer-events-none
+
+              absolute
+              left-0
               right-0
               top-0
               z-20
-              h-[22px]
+
+              h-[35px]
+
               bg-gradient-to-b
-              from-white
+              from-[#191919]
               to-transparent
             "
           />
@@ -236,19 +272,24 @@ export default function InquirySection() {
           <div
             className="
               pointer-events-none
+
               absolute
               bottom-0
               left-0
               right-0
               z-20
-              h-[22px]
+
+              h-[35px]
+
               bg-gradient-to-t
-              from-white
+              from-[#191919]
               to-transparent
             "
           />
 
-          {/* MAIL LOOP */}
+          {/* ==========================================
+              MAIL LOOP
+          ========================================== */}
 
           <motion.div
             className="flex flex-col"
@@ -256,7 +297,7 @@ export default function InquirySection() {
               y: ["0%", "-50%"],
             }}
             transition={{
-              duration: 10,
+              duration: 12,
               repeat: Infinity,
               repeatType: "loop",
               ease: "linear",
@@ -267,22 +308,32 @@ export default function InquirySection() {
                 key={`${item.name}-${index}`}
                 className="
                   group
+
                   grid
                   h-[52px]
                   shrink-0
+
                   grid-cols-[22px_22px_22px_105px_minmax(0,1fr)_auto]
+
                   items-center
                   gap-2
+
                   border-b
-                  border-black/[0.055]
-                  bg-white
+                  border-white/[0.055]
+
+                  bg-[#191919]
+
                   px-4
-                  transition-colors
+
+                  transition-all
                   duration-200
-                  hover:bg-[#fafafa]
+
+                  hover:bg-[#222222]
+
                   sm:grid-cols-[22px_22px_24px_120px_minmax(0,1fr)_auto]
                   sm:gap-3
                   sm:px-5
+
                   xl:grid-cols-[22px_22px_24px_145px_minmax(0,1fr)_auto]
                 "
               >
@@ -290,8 +341,14 @@ export default function InquirySection() {
 
                 <Square
                   size={15}
-                  strokeWidth={1.4}
-                  className="text-[#c4cbd4]"
+                  strokeWidth={1.3}
+                  className="
+                    text-white/20
+                    transition-colors
+                    duration-200
+
+                    group-hover:text-white/40
+                  "
                 />
 
                 {/* STAR */}
@@ -300,25 +357,61 @@ export default function InquirySection() {
                   size={16}
                   strokeWidth={1.4}
                   className="
-                    text-[#c4cbd4]
-                    transition-colors
+                    text-white/20
+
+                    transition-all
                     duration-200
+
+                    group-hover:scale-110
                     group-hover:text-[#de1334]
                   "
                 />
 
                 {/* MAIL */}
 
-                <Mail size={17} strokeWidth={1.5} className="text-[#9ec8eb]" />
+                <div
+                  className="
+                    flex
+                    h-[24px]
+                    w-[24px]
+                    items-center
+                    justify-center
+
+                    rounded-[7px]
+
+                    bg-white/[0.055]
+
+                    transition-colors
+                    duration-200
+
+                    group-hover:bg-[#de1334]/15
+                  "
+                >
+                  <Mail
+                    size={13}
+                    strokeWidth={1.6}
+                    className="
+                      text-white/45
+
+                      transition-colors
+                      duration-200
+
+                      group-hover:text-[#de1334]
+                    "
+                  />
+                </div>
 
                 {/* NAME */}
 
                 <p
                   className="
                     truncate
+
                     text-[13px]
                     font-bold
-                    text-[#222]
+
+                    text-white/85
+
                     sm:text-[14px]
                   "
                 >
@@ -327,15 +420,30 @@ export default function InquirySection() {
 
                 {/* SUBJECT */}
 
-                <div className="flex min-w-0 items-center gap-2">
+                <div
+                  className="
+                    flex
+                    min-w-0
+                    items-center
+                    gap-2
+                  "
+                >
                   <p
                     className="
                       min-w-0
                       flex-1
                       truncate
+
                       text-[12px]
-                      font-semibold
-                      text-[#333]
+                      font-medium
+
+                      text-white/55
+
+                      transition-colors
+                      duration-200
+
+                      group-hover:text-white/80
+
                       sm:text-[13px]
                     "
                   >
@@ -348,7 +456,14 @@ export default function InquirySection() {
                     className="
                       hidden
                       shrink-0
-                      text-[#9aa1aa]
+
+                      text-white/20
+
+                      transition-colors
+                      duration-200
+
+                      group-hover:text-white/45
+
                       sm:block
                     "
                   />
@@ -359,9 +474,12 @@ export default function InquirySection() {
                 <p
                   className="
                     whitespace-nowrap
+
                     text-[10px]
                     font-medium
-                    text-[#777]
+
+                    text-white/30
+
                     sm:text-[11px]
                   "
                 >
@@ -370,6 +488,29 @@ export default function InquirySection() {
               </div>
             ))}
           </motion.div>
+
+          {/* 오른쪽 아주 약한 브랜드 빛 */}
+
+          <div
+            className="
+              pointer-events-none
+
+              absolute
+              -bottom-[170px]
+              -right-[170px]
+
+              z-10
+
+              h-[350px]
+              w-[350px]
+
+              rounded-full
+
+              bg-[#de1334]/[0.035]
+
+              blur-[10px]
+            "
+          />
         </div>
       </div>
     </section>
