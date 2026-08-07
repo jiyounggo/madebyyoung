@@ -81,7 +81,7 @@ export default function SeoBanner() {
             <div>
               <p
                 className="
-                  text-[12px]
+                  text-[16px]
                   font-bold
 
                   text-[#de1334]
@@ -96,14 +96,14 @@ export default function SeoBanner() {
 
                   break-keep
 
-                  text-[20px]
+                  text-[22px]
                   font-bold
                   leading-[1.4]
                   tracking-[-0.04em]
 
                   text-white
 
-                  md:text-[23px]
+                  md:text-[26px]
                 "
               >
                 홈페이지는 만드는 것보다,
@@ -119,12 +119,12 @@ export default function SeoBanner() {
 
                   break-keep
 
-                  text-[13px]
+                  text-[15px]
                   leading-[1.7]
 
                   text-white/60
 
-                  md:text-[14px]
+                  md:text-[18px]
                 "
               >
                 검색 상위 노출을 목표로 SEO 기본 구조까지 함께 설계합니다.

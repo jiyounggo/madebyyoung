@@ -103,40 +103,6 @@ export default function InquirySection() {
           "
         >
           <div className="w-full max-w-[420px]">
-            {/* LABEL */}
-
-            <div className="mb-3 flex items-center gap-2">
-              <span className="relative flex h-2.5 w-2.5">
-                <span
-                  className="
-                    absolute
-                    inline-flex
-                    h-full
-                    w-full
-                    animate-ping
-                    rounded-full
-                    bg-[#de1334]
-                    opacity-30
-                  "
-                />
-
-                <span
-                  className="
-                    relative
-                    inline-flex
-                    h-2.5
-                    w-2.5
-                    rounded-full
-                    bg-[#de1334]
-                  "
-                />
-              </span>
-
-              <span className="text-[13px] font-bold text-[#de1334]">
-                1:1 맞춤 제작
-              </span>
-            </div>
-
             {/* TITLE */}
 
             <h2
@@ -189,6 +155,35 @@ export default function InquirySection() {
             >
               <div className="flex items-center justify-between gap-5">
                 <div>
+                  {/* LABEL */}
+
+                  <div className="mb-3 flex items-center gap-2">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span
+                        className="
+                    absolute
+                    inline-flex
+                    h-full
+                    w-full
+                    animate-ping
+                    rounded-full
+                    bg-[#de1334]
+                    opacity-30
+                  "
+                      />
+
+                      <span
+                        className="
+                    relative
+                    inline-flex
+                    h-2.5
+                    w-2.5
+                    rounded-full
+                    bg-[#de1334]
+                  "
+                      />
+                    </span>
+                  </div>
                   <p
                     className="
                       text-[17px]
@@ -199,35 +194,6 @@ export default function InquirySection() {
                   >
                     월 소수 프로젝트만 진행
                   </p>
-
-                  <p
-                    className="
-                      mt-1
-                      text-[12px]
-                      font-medium
-                      text-[#777]
-                    "
-                  >
-                    처음부터 끝까지 직접 책임지기 위해
-                  </p>
-                </div>
-
-                <div
-                  className="
-                    flex
-                    h-10
-                    w-10
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#de1334]
-                    text-[11px]
-                    font-bold
-                    text-white
-                  "
-                >
-                  1:1
                 </div>
               </div>
             </div>
