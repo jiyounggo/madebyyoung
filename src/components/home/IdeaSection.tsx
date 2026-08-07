@@ -260,7 +260,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                   md:text-[16px]
                 "
               >
-                아이디어만 떠올랐지 어디서부터 만들어야 할지 잘 모르겠어요.
+                아이디어만 떠올랐지 어디서부터 만들어야 할지 잘 모르겠어요ㅠㅠ
               </p>
 
               <span
@@ -670,38 +670,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
               gap-5
             "
           >
-            <div>
-              <p
-                className="
-                  text-[18px]
-                  font-semibold
-                  tracking-[-0.035em]
-
-                  text-[#1b1b1b]
-
-                  md:text-[22px]
-                "
-              >
-                생각만 있어도 시작할 수 있습니다.
-              </p>
-
-              <p
-                className="
-                  mt-1
-
-                  break-keep
-
-                  text-[14px]
-                  leading-[1.7]
-
-                  text-[#777]
-
-                  md:text-[15px]
-                "
-              >
-                아이디어를 실제 서비스로 만들기 위해 필요한 과정을 함께합니다.
-              </p>
-            </div>
+            <div></div>
 
             <div
               className="
@@ -1073,7 +1042,8 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 md:text-[16px]
               "
             >
-              &ldquo;아이디어는 있는데 어떻게 만들어야 할지 모르겠어요.&rdquo;
+              &ldquo;아이디어는 있는데 어떻게 만들어야 할지
+              모르겠어요ㅠㅠ&rdquo;
               <br className="hidden sm:block" />
               바로 그 단계에서 MADE BY YOUNG과 함께 시작하면 됩니다.
             </p>

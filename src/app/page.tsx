@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import HeroSection from "@/components/home/HeroSection";
 import IdeaSection from "@/components/home/IdeaSection";
 import IdentitySection from "@/components/home/IdentitySection";
+import ServiceSection from "@/components/home/ServiceSection";
 
 export const metadata: Metadata = {
   title: "MADE BY YOUNG | 맞춤형 홈페이지 제작",
@@ -24,7 +25,8 @@ export default function HomePage() {
       <main>
         <HeroSection />
 
-        <IdentitySection />
+        {/* <IdentitySection /> */}
+        <ServiceSection />
       </main>
     </>
   );
