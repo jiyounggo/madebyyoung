@@ -1,179 +1,188 @@
-import { ArrowUpRight, Check, Search } from "lucide-react";
+import { Check, Search } from "lucide-react";
 
 export default function SeoBanner() {
   return (
-    <section className="bg-white px-5 py-8 md:px-8 md:py-10">
-      <div className="mx-auto w-full max-w-[1100px]">
+    <section
+      className="
+        relative
+        w-full
+        overflow-hidden
+        bg-[#171717]
+      "
+    >
+      {/* 배경 장식 */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-20
+          -top-32
+          h-[280px]
+          w-[280px]
+          rounded-full
+          bg-[#de1334]/10
+        "
+      />
+
+      {/* ==========================================
+          CONTENT WIDTH
+          다른 섹션과 좌우 라인 맞추기
+      ========================================== */}
+
+      <div
+        className="
+          relative
+          z-10
+
+          mx-auto
+          w-full
+          max-w-[1100px]
+
+          px-5
+          py-7
+
+          md:px-8
+          md:py-8
+        "
+      >
         <div
           className="
-            relative
-            overflow-hidden
-            rounded-[26px]
-            border
-            border-black/[0.07]
-            bg-[#f7f7f7]
-            px-6
-            py-6
+            flex
+            flex-col
+            gap-6
 
-            md:px-8
-            md:py-7
+            md:flex-row
+            md:items-center
+            md:justify-between
           "
         >
-          {/* 연한 브랜드 포인트 */}
-          <div
-            className="
-              pointer-events-none
-              absolute
-              -right-16
-              -top-20
-              h-[190px]
-              w-[190px]
-              rounded-full
-              bg-[#de1334]/[0.04]
-            "
-          />
+          {/* LEFT */}
 
-          <div
-            className="
-              relative
-              z-10
-              flex
-              flex-col
-              gap-6
-
-              md:flex-row
-              md:items-center
-              md:justify-between
-            "
-          >
-            {/* LEFT */}
-
-            <div className="flex items-start gap-4">
-              <div
-                className="
-                  flex
-                  h-11
-                  w-11
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-white
-                  text-[#de1334]
-                  shadow-[0_5px_20px_rgba(0,0,0,0.05)]
-                "
-              >
-                <Search size={19} strokeWidth={2} />
-              </div>
-
-              <div>
-                <p
-                  className="
-                    text-[13px]
-                    font-bold
-                    text-[#de1334]
-                  "
-                >
-                  검색 노출까지 생각한 제작
-                </p>
-
-                <h3
-                  className="
-                    mt-1.5
-                    break-keep
-                    text-[20px]
-                    font-bold
-                    leading-[1.4]
-                    tracking-[-0.04em]
-                    text-[#171717]
-
-                    md:text-[23px]
-                  "
-                >
-                  예쁜 홈페이지에서 끝나지 않습니다.
-                </h3>
-
-                <p
-                  className="
-                    mt-2
-                    max-w-[600px]
-                    break-keep
-                    text-[14px]
-                    leading-[1.7]
-                    text-[#666]
-
-                    md:text-[15px]
-                  "
-                >
-                  검색에 유리한 구조와 기본 SEO를 함께 적용해 더 많은 고객에게
-                  발견될 수 있도록 제작합니다.
-                </p>
-              </div>
-            </div>
-
-            {/* RIGHT */}
-
+          <div className="flex items-start gap-4">
             <div
               className="
                 flex
+                h-11
+                w-11
                 shrink-0
-                flex-wrap
-                gap-2
+                items-center
+                justify-center
 
-                md:justify-end
+                rounded-full
+
+                bg-[#de1334]
+
+                text-white
               "
             >
-              {["검색 구조", "메타데이터", "사이트맵", "검색엔진 등록"].map(
-                (item) => (
-                  <div
-                    key={item}
-                    className="
-                    flex
-                    items-center
-                    gap-1.5
-                    rounded-full
-                    border
-                    border-black/[0.06]
-                    bg-white
-                    px-3
-                    py-2
-                  "
-                  >
-                    <Check
-                      size={12}
-                      strokeWidth={2.5}
-                      className="text-[#de1334]"
-                    />
+              <Search size={19} strokeWidth={2} />
+            </div>
 
-                    <span
-                      className="
-                      whitespace-nowrap
-                      text-[12px]
-                      font-bold
-                      text-[#444]
-                    "
-                    >
-                      {item}
-                    </span>
-                  </div>
-                ),
-              )}
-
-              <div
+            <div>
+              <p
                 className="
-                  flex
-                  h-[34px]
-                  w-[34px]
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-[#de1334]
-                  text-white
+                  text-[12px]
+                  font-bold
+
+                  text-[#de1334]
                 "
               >
-                <ArrowUpRight size={15} strokeWidth={2} />
-              </div>
+                검색 노출까지 생각합니다.
+              </p>
+
+              <h3
+                className="
+                  mt-1
+
+                  break-keep
+
+                  text-[20px]
+                  font-bold
+                  leading-[1.4]
+                  tracking-[-0.04em]
+
+                  text-white
+
+                  md:text-[23px]
+                "
+              >
+                홈페이지는 만드는 것보다,
+                <span className="text-[#de1334]">
+                  {" "}
+                  발견되는 것이 중요합니다.
+                </span>
+              </h3>
+
+              <p
+                className="
+                  mt-1.5
+
+                  break-keep
+
+                  text-[13px]
+                  leading-[1.7]
+
+                  text-white/60
+
+                  md:text-[14px]
+                "
+              >
+                검색 상위 노출을 목표로 SEO 기본 구조까지 함께 설계합니다.
+              </p>
             </div>
+          </div>
+
+          {/* RIGHT */}
+
+          <div
+            className="
+              flex
+              shrink-0
+              flex-wrap
+              gap-2
+
+              md:max-w-[390px]
+              md:justify-end
+            "
+          >
+            {[
+              "SEO 최적화",
+              "네이버 검색 노출",
+              "구글 검색 노출",
+              "검색엔진 등록",
+              "검색 구조 설계",
+              "메타데이터",
+              "사이트맵",
+              "모바일 SEO",
+            ].map((item) => (
+              <div
+                key={item}
+                className="
+      flex
+      items-center
+      gap-1.5
+      rounded-full
+      border
+      border-white/10
+      bg-white/[0.06]
+      px-3
+      py-2
+    "
+              >
+                <Check size={12} strokeWidth={2.5} className="text-[#de1334]" />
+
+                <span
+                  className="
+        whitespace-nowrap
+        text-[12px]
+        font-semibold
+        text-white/80
+      "
+                >
+                  {item}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
