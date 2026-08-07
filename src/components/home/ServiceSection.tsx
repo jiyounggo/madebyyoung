@@ -654,60 +654,6 @@ export default function ServiceSection() {
         {/* ==========================================
             BOTTOM MESSAGE
         ========================================== */}
-
-        <div
-          className="
-            mx-auto
-            mt-7
-
-            flex
-            max-w-[900px]
-            items-start
-            justify-center
-            gap-3
-
-            text-center
-          "
-        >
-          <div
-            className="
-              flex
-              h-8
-              w-8
-              shrink-0
-              items-center
-              justify-center
-
-              rounded-full
-
-              bg-[#fff0f2]
-
-              text-[#de1334]
-            "
-          >
-            <MessageCircleMore size={16} strokeWidth={2} />
-          </div>
-
-          <p
-            className="
-              pt-1
-
-              break-keep
-
-              text-[14px]
-              font-medium
-              leading-[1.7]
-
-              text-[#555]
-
-              md:text-[15px]
-            "
-          >
-            어떤 작업이 필요한지 정확히 모르셔도 괜찮습니다.
-            <br className="hidden sm:block" />
-            현재 상황과 원하는 방향부터 함께 정리해드립니다.
-          </p>
-        </div>
       </div>
     </section>
   );

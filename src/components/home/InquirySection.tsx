@@ -1,343 +1,254 @@
 "use client";
 
-import { ArrowUpRight, Check, MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { Mail, Search, Square, Star } from "lucide-react";
 
 const INQUIRIES = [
   {
-    name: "김**",
-    type: "기업 홈페이지",
-    message: "기존 홈페이지 리뉴얼 문의드립니다.",
-    time: "방금 전",
+    name: "김*진",
+    subject: "기업 홈페이지 신규 제작 문의드립니다.",
+    date: "1시간 전",
   },
   {
-    name: "박**",
-    type: "맞춤 홈페이지",
-    message: "브랜드 홈페이지 제작 상담 가능할까요?",
-    time: "3분 전",
+    name: "박*영",
+    subject: "브랜드 홈페이지 제작 상담 가능할까요?",
+    date: "3시간 전",
   },
   {
-    name: "이**",
-    type: "맞춤 기능 개발",
-    message: "관리자 페이지와 회원 기능 개발 문의드립니다.",
-    time: "8분 전",
+    name: "이*현",
+    subject: "기존 홈페이지 전체 리뉴얼 문의드립니다.",
+    date: "5시간 전",
   },
   {
-    name: "최**",
-    type: "AI · 업무 자동화",
-    message: "반복되는 문의 업무를 자동화하고 싶어요.",
-    time: "12분 전",
+    name: "최*원",
+    subject: "관리자 페이지 추가 개발 문의드립니다.",
+    date: "8시간 전",
   },
   {
-    name: "정**",
-    type: "쇼핑몰",
-    message: "제품이 많은 쇼핑몰 제작도 가능한가요?",
-    time: "18분 전",
+    name: "정*윤",
+    subject: "쇼핑몰 제작 비용과 기간이 궁금합니다.",
+    date: "12시간 전",
   },
   {
-    name: "윤**",
-    type: "홈페이지 리뉴얼",
-    message: "모바일 화면까지 전체적으로 바꾸고 싶습니다.",
-    time: "24분 전",
+    name: "한*희",
+    subject: "아직 기획 단계인데 상담부터 가능할까요?",
+    date: "어제",
   },
   {
-    name: "한**",
-    type: "맞춤 홈페이지",
-    message: "아직 기획 단계인데 상담부터 가능할까요?",
-    time: "31분 전",
+    name: "윤*영",
+    subject: "AI 업무 자동화 관련 제작 문의드립니다.",
+    date: "어제",
   },
   {
-    name: "서**",
-    type: "유지보수",
-    message: "기존 사이트 기능 추가 관련 문의드립니다.",
-    time: "42분 전",
+    name: "서*민",
+    subject: "기존 사이트 유지보수 문의드립니다.",
+    date: "2일 전",
+  },
+  {
+    name: "강*준",
+    subject: "회원 기능이 있는 홈페이지 제작 문의드립니다.",
+    date: "2일 전",
+  },
+  {
+    name: "오*현",
+    subject: "예약 기능이 포함된 홈페이지 제작 문의드립니다.",
+    date: "3일 전",
+  },
+  {
+    name: "장*서",
+    subject: "회사 홈페이지와 관리자 기능 제작 문의입니다.",
+    date: "3일 전",
+  },
+  {
+    name: "신*우",
+    subject: "제품 검색과 필터 기능 개발도 가능할까요?",
+    date: "4일 전",
   },
 ];
 
 export default function InquirySection() {
-  // 자연스럽게 무한 반복되도록 동일 목록 2번
+  // 동일한 목록을 두 번 이어 붙여 끊김 없는 무한 루프
   const loopItems = [...INQUIRIES, ...INQUIRIES];
 
   return (
-    <section
-      className="
-        overflow-hidden
-        bg-[#f7f7f7]
-        px-5
-        py-24
-
-        md:px-8
-        md:py-32
-      "
-    >
+    <section className="relative overflow-hidden bg-[#f7f7f7]">
       <div
         className="
           mx-auto
           grid
           w-full
-          max-w-[1180px]
+          max-w-[1360px]
           grid-cols-1
-          gap-16
-
-          lg:grid-cols-[0.9fr_1.1fr]
-          lg:items-center
-          lg:gap-20
+          lg:h-[360px]
+          lg:grid-cols-[0.72fr_1.28fr]
         "
       >
         {/* ==========================================
             LEFT
         ========================================== */}
 
-        <div>
-          {/* 작은 라벨 */}
+        <div
+          className="
+            flex
+            items-center
+            bg-[#f7f7f7]
+            px-6
+            py-10
+            md:px-10
+            lg:h-[360px]
+            lg:px-14
+            lg:py-8
+            xl:pl-16
+            xl:pr-14
+          "
+        >
+          <div className="w-full max-w-[420px]">
+            {/* LABEL */}
 
-          <div
-            className="
-              mb-7
-              inline-flex
-              items-center
-              gap-2
+            <div className="mb-3 flex items-center gap-2">
+              <span className="relative flex h-2.5 w-2.5">
+                <span
+                  className="
+                    absolute
+                    inline-flex
+                    h-full
+                    w-full
+                    animate-ping
+                    rounded-full
+                    bg-[#de1334]
+                    opacity-30
+                  "
+                />
 
-              rounded-full
-              border
-              border-[#de1334]/15
+                <span
+                  className="
+                    relative
+                    inline-flex
+                    h-2.5
+                    w-2.5
+                    rounded-full
+                    bg-[#de1334]
+                  "
+                />
+              </span>
 
-              bg-white
-
-              px-4
-              py-2
-            "
-          >
-            <span
-              className="
-                h-2
-                w-2
-
-                animate-pulse
-                rounded-full
-
-                bg-[#de1334]
-              "
-            />
-
-            <span
-              className="
-                text-[13px]
-                font-bold
-                tracking-[-0.02em]
-
-                text-[#de1334]
-              "
-            >
-              새로운 프로젝트 문의
-            </span>
-          </div>
-
-          {/* TITLE */}
-
-          <h2
-            className="
-              break-keep
-
-              text-[39px]
-              font-bold
-              leading-[1.15]
-              tracking-[-0.055em]
-
-              text-[#171717]
-
-              sm:text-[47px]
-              md:text-[54px]
-            "
-          >
-            지금 이 순간에도
-            <br />
-            <span className="text-[#de1334]">
-              새로운 프로젝트가
-              <br className="hidden sm:block" />
-              시작되고 있습니다.
-            </span>
-          </h2>
-
-          {/* DESCRIPTION */}
-
-          <p
-            className="
-              mt-7
-              max-w-[520px]
-
-              break-keep
-
-              text-[16px]
-              font-medium
-              leading-[1.9]
-
-              text-[#555]
-
-              md:text-[17px]
-            "
-          >
-            MADE BY YOUNG은 많은 프로젝트를 동시에 찍어내지 않습니다. 하나의
-            아이디어가 실제 웹이 되는 모든 과정을 직접 함께합니다.
-          </p>
-
-          {/* ==========================================
-              OWNER MESSAGE
-          ========================================== */}
-
-          <div
-            className="
-              mt-9
-              max-w-[520px]
-
-              overflow-hidden
-
-              rounded-[24px]
-
-              border
-              border-black/[0.07]
-
-              bg-white
-
-              shadow-[0_10px_35px_rgba(0,0,0,0.04)]
-            "
-          >
-            <div className="p-6 sm:p-7">
-              <p
-                className="
-                  text-[13px]
-                  font-bold
-                  tracking-[-0.02em]
-
-                  text-[#de1334]
-                "
-              >
-                1:1 DIRECT PROJECT
-              </p>
-
-              <p
-                className="
-                  mt-3
-
-                  break-keep
-
-                  text-[21px]
-                  font-bold
-                  leading-[1.5]
-                  tracking-[-0.035em]
-
-                  text-[#222]
-
-                  sm:text-[23px]
-                "
-              >
-                상담부터 제작, 오픈 이후까지
-                <br />
-                이지영이 직접 책임집니다.
-              </p>
-
-              <div
-                className="
-                  mt-6
-                  flex
-                  flex-wrap
-                  gap-2
-                "
-              >
-                {["기획", "디자인", "개발", "피드백", "오픈", "유지보수"].map(
-                  (item) => (
-                    <div
-                      key={item}
-                      className="
-                      flex
-                      items-center
-                      gap-1.5
-
-                      rounded-full
-
-                      bg-[#f6f6f6]
-
-                      px-3
-                      py-2
-                    "
-                    >
-                      <Check
-                        size={12}
-                        strokeWidth={2.7}
-                        className="text-[#de1334]"
-                      />
-
-                      <span
-                        className="
-                        text-[12px]
-                        font-bold
-
-                        text-[#444]
-                      "
-                      >
-                        {item}
-                      </span>
-                    </div>
-                  ),
-                )}
-              </div>
+              <span className="text-[13px] font-bold text-[#de1334]">
+                1:1 맞춤 제작
+              </span>
             </div>
 
-            {/* BOTTOM */}
+            {/* TITLE */}
+
+            <h2
+              className="
+                break-keep
+                text-[31px]
+                font-bold
+                leading-[1.13]
+                tracking-[-0.055em]
+                text-[#171717]
+                sm:text-[35px]
+                md:text-[38px]
+              "
+            >
+              많이 만들기보다,
+              <br />
+              <span className="text-[#de1334]">하나를 제대로 만듭니다.</span>
+            </h2>
+
+            {/* DESCRIPTION */}
+
+            <p
+              className="
+                mt-4
+                break-keep
+                text-[14px]
+                font-medium
+                leading-[1.7]
+                text-[#666]
+                md:text-[15px]
+              "
+            >
+              상담부터 기획, 디자인, 개발,
+              <br />
+              <strong className="font-bold text-[#222]">
+                오픈까지 모든 과정을 직접 진행합니다.
+              </strong>
+            </p>
+
+            {/* LIMITED PROJECT */}
 
             <div
               className="
-                flex
-                items-center
-                justify-between
-
+                mt-5
+                max-w-[400px]
                 border-t
-                border-black/[0.06]
-
-                bg-[#fff6f7]
-
-                px-6
-                py-4
-
-                sm:px-7
+                border-black/[0.1]
+                pt-4
               "
             >
-              <p
-                className="
-                  text-[13px]
-                  font-semibold
+              <div className="flex items-center justify-between gap-5">
+                <div>
+                  <p
+                    className="
+                      text-[17px]
+                      font-bold
+                      tracking-[-0.035em]
+                      text-[#171717]
+                    "
+                  >
+                    월 소수 프로젝트만 진행
+                  </p>
 
-                  text-[#555]
-                "
-              >
-                한 사람과 끝까지 함께하는 제작
-              </p>
+                  <p
+                    className="
+                      mt-1
+                      text-[12px]
+                      font-medium
+                      text-[#777]
+                    "
+                  >
+                    처음부터 끝까지 직접 책임지기 위해
+                  </p>
+                </div>
 
-              <ArrowUpRight
-                size={17}
-                strokeWidth={2}
-                className="text-[#de1334]"
-              />
+                <div
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-[#de1334]
+                    text-[11px]
+                    font-bold
+                    text-white
+                  "
+                >
+                  1:1
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* ==========================================
-            RIGHT - INQUIRY STREAM
+            RIGHT - MAIL
         ========================================== */}
 
         <div
           className="
             relative
-            mx-auto
-
-            h-[600px]
+            h-[330px]
             w-full
-            max-w-[570px]
-
             overflow-hidden
+            bg-white
+            lg:h-[360px]
           "
         >
-          {/* 위쪽 자연스럽게 사라지는 효과 */}
+          {/* TOP FADE */}
 
           <div
             className="
@@ -347,17 +258,14 @@ export default function InquirySection() {
               right-0
               top-0
               z-20
-
-              h-[120px]
-
+              h-[22px]
               bg-gradient-to-b
-              from-[#f7f7f7]
-              via-[#f7f7f7]/80
+              from-white
               to-transparent
             "
           />
 
-          {/* 아래쪽 자연스럽게 사라지는 효과 */}
+          {/* BOTTOM FADE */}
 
           <div
             className="
@@ -367,214 +275,137 @@ export default function InquirySection() {
               left-0
               right-0
               z-20
-
-              h-[120px]
-
+              h-[22px]
               bg-gradient-to-t
-              from-[#f7f7f7]
-              via-[#f7f7f7]/80
+              from-white
               to-transparent
             "
           />
 
-          {/* 배경 큰 글자 */}
+          {/* MAIL LOOP */}
 
-          <div
-            className="
-              pointer-events-none
-              absolute
-              inset-0
-
-              flex
-              items-center
-              justify-center
-            "
+          <motion.div
+            className="flex flex-col"
+            animate={{
+              y: ["0%", "-50%"],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "linear",
+            }}
           >
-            <span
-              className="
-                select-none
-
-                text-[120px]
-                font-black
-                tracking-[-0.08em]
-
-                text-black/[0.025]
-
-                md:text-[160px]
-              "
-            >
-              YOUNG
-            </span>
-          </div>
-
-          {/* ==========================================
-              MOVING LIST
-          ========================================== */}
-
-          <div className="inquiry-marquee flex flex-col gap-3">
             {loopItems.map((item, index) => (
               <div
                 key={`${item.name}-${index}`}
-                className={`
+                className="
                   group
-
-                  relative
-                  z-10
-
-                  flex
+                  grid
+                  h-[52px]
+                  shrink-0
+                  grid-cols-[22px_22px_22px_105px_minmax(0,1fr)_auto]
                   items-center
-                  gap-4
-
-                  rounded-[18px]
-
-                  border
-
+                  gap-2
+                  border-b
+                  border-black/[0.055]
                   bg-white
-
-                  px-5
-                  py-4
-
-                  shadow-[0_8px_30px_rgba(0,0,0,0.045)]
-
-                  transition-all
-                  duration-300
-
-                  hover:-translate-y-1
-                  hover:shadow-[0_14px_35px_rgba(0,0,0,0.08)]
-
-                  ${
-                    index % 4 === 1
-                      ? "border-[#de1334]/20"
-                      : "border-black/[0.06]"
-                  }
-                `}
+                  px-4
+                  transition-colors
+                  duration-200
+                  hover:bg-[#fafafa]
+                  sm:grid-cols-[22px_22px_24px_120px_minmax(0,1fr)_auto]
+                  sm:gap-3
+                  sm:px-5
+                  xl:grid-cols-[22px_22px_24px_145px_minmax(0,1fr)_auto]
+                "
               >
-                {/* AVATAR */}
+                {/* CHECKBOX */}
 
-                <div
+                <Square
+                  size={15}
+                  strokeWidth={1.4}
+                  className="text-[#c4cbd4]"
+                />
+
+                {/* STAR */}
+
+                <Star
+                  size={16}
+                  strokeWidth={1.4}
                   className="
-                    flex
-                    h-11
-                    w-11
-                    shrink-0
-                    items-center
-                    justify-center
+                    text-[#c4cbd4]
+                    transition-colors
+                    duration-200
+                    group-hover:text-[#de1334]
+                  "
+                />
 
-                    rounded-full
+                {/* MAIL */}
 
-                    bg-[#fff0f2]
+                <Mail size={17} strokeWidth={1.5} className="text-[#9ec8eb]" />
 
-                    text-[#de1334]
+                {/* NAME */}
+
+                <p
+                  className="
+                    truncate
+                    text-[13px]
+                    font-bold
+                    text-[#222]
+                    sm:text-[14px]
                   "
                 >
-                  <MessageCircle size={18} strokeWidth={2} />
-                </div>
+                  {item.name}
+                </p>
 
-                {/* TEXT */}
+                {/* SUBJECT */}
 
-                <div className="min-w-0 flex-1">
-                  <div
-                    className="
-                      flex
-                      items-center
-                      gap-2
-                    "
-                  >
-                    <span
-                      className="
-                        text-[14px]
-                        font-bold
-
-                        text-[#222]
-                      "
-                    >
-                      {item.name}
-                    </span>
-
-                    <span
-                      className="
-                        rounded-full
-
-                        bg-[#f4f4f4]
-
-                        px-2
-                        py-1
-
-                        text-[10px]
-                        font-bold
-
-                        text-[#777]
-                      "
-                    >
-                      {item.type}
-                    </span>
-                  </div>
-
+                <div className="flex min-w-0 items-center gap-2">
                   <p
                     className="
-                      mt-1.5
+                      min-w-0
+                      flex-1
                       truncate
-
-                      text-[14px]
-                      font-medium
-
-                      text-[#555]
+                      text-[12px]
+                      font-semibold
+                      text-[#333]
+                      sm:text-[13px]
                     "
                   >
-                    {item.message}
+                    {item.subject}
                   </p>
+
+                  <Search
+                    size={13}
+                    strokeWidth={1.5}
+                    className="
+                      hidden
+                      shrink-0
+                      text-[#9aa1aa]
+                      sm:block
+                    "
+                  />
                 </div>
 
-                {/* TIME */}
+                {/* DATE */}
 
-                <span
+                <p
                   className="
-                    shrink-0
-
-                    text-[11px]
+                    whitespace-nowrap
+                    text-[10px]
                     font-medium
-
-                    text-[#aaa]
+                    text-[#777]
+                    sm:text-[11px]
                   "
                 >
-                  {item.time}
-                </span>
+                  {item.date}
+                </p>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
-
-      {/* ==========================================
-          MARQUEE CSS
-      ========================================== */}
-
-      <style jsx>{`
-        .inquiry-marquee {
-          animation: inquiryScroll 22s linear infinite;
-          will-change: transform;
-        }
-
-        .inquiry-marquee:hover {
-          animation-play-state: paused;
-        }
-
-        @keyframes inquiryScroll {
-          from {
-            transform: translateY(0);
-          }
-
-          to {
-            transform: translateY(calc(-50% - 6px));
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .inquiry-marquee {
-            animation: none;
-          }
-        }
-      `}</style>
     </section>
   );
 }
