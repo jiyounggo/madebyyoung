@@ -30,11 +30,13 @@ export default function HomePage() {
 
       <main>
         <HeroSection />
-        <SeoBanner />
+        <IdeaSection />
         {/* <IdentitySection /> */}
+        <SeoBanner />
         <ServiceSection />
 
         <InquirySection />
+
         <ProcessSection />
 
         <ContactSection />

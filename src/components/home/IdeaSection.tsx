@@ -30,27 +30,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
   const scale = useTransform(safeProgress, [0.62, 1], [0.98, 1]);
 
   return (
-    <motion.section
-      style={{
-        y,
-        scale,
-      }}
-      className="
-        absolute
-        inset-x-0
-        bottom-0
-        z-20
-
-        min-h-[82vh]
-
-        rounded-t-[42px]
-        bg-white
-
-        shadow-[0_-24px_70px_rgba(0,0,0,0.06)]
-
-        md:rounded-t-[56px]
-      "
-    >
+    <div className="bg-[#fff]">
       <div
         className="
           mx-auto
@@ -63,7 +43,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
           sm:px-7
 
           md:px-10
-          md:py-14
+          md:py-34
         "
       >
         {/* ==================================================
@@ -1050,6 +1030,6 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
           </div>
         </div>
       </div>
-    </motion.section>
+    </div>
   );
 }

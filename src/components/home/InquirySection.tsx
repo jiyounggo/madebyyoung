@@ -197,7 +197,7 @@ export default function InquirySection() {
               <p
                 className="
                   mt-2
-                  text-[12px]
+                  text-[14px]
                   font-medium
                   text-white/35
                 "

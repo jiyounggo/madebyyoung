@@ -1,106 +1,27 @@
 "use client";
 
-import { ArrowUpRight, Check, ChevronDown, Send, X } from "lucide-react";
-import { FormEvent, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState } from "react";
 
-type ContactForm = {
-  name: string;
-  phone: string;
-  type: string;
-  budget: string;
-  message: string;
-};
-
-const INITIAL_FORM: ContactForm = {
-  name: "",
-  phone: "",
-  type: "",
-  budget: "",
-  message: "",
-};
+import ProjectContactModal from "./ProjectContactModal";
 
 export default function ContactSection() {
   const [isOpen, setIsOpen] = useState(false);
-  const [form, setForm] = useState<ContactForm>(INITIAL_FORM);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   /* ==========================================
-      MODAL OPEN 시 body scroll 막기
+     PAGE SCROLL
   ========================================== */
 
-  useEffect(() => {
-    if (!isOpen) {
-      document.body.style.overflow = "";
-      return;
-    }
+  const { scrollYProgress } = useScroll();
 
-    document.body.style.overflow = "hidden";
+  /* 뒤 초대형 타이포 아주 천천히 이동 */
+  const backgroundTextX = useTransform(scrollYProgress, [0, 1], ["2%", "-6%"]);
 
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
+  const backgroundTextY = useTransform(scrollYProgress, [0, 1], ["0%", "-5%"]);
 
-  /* ==========================================
-      ESC 닫기
-  ========================================== */
-
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
-
-  /* ==========================================
-      CHANGE
-  ========================================== */
-
-  const handleChange = (field: keyof ContactForm, value: string) => {
-    setForm((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
-
-  /* ==========================================
-      SUBMIT
-  ========================================== */
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    console.log("상담 문의", form);
-
-    setIsSubmitted(true);
-
-    /*
-      나중에 여기에서
-
-      - Google Sheets
-      - Supabase
-      - API Route
-
-      등으로 전송하면 됨.
-    */
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setForm(INITIAL_FORM);
-    }, 250);
-  };
+  /* 레드 라인 이동 */
+  const lineX = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
     <>
@@ -110,172 +31,556 @@ export default function ContactSection() {
 
       <section
         className="
-    relative
-    overflow-hidden
-    bg-[#171717]
-    px-5
-    py-10
+          relative
+          min-h-[620px]
+          overflow-hidden
+          bg-[#171717]
 
-    md:px-8
-    md:py-14
-  "
+          px-5
+          py-20
+
+          md:min-h-[720px]
+          md:px-8
+          md:py-24
+
+          lg:min-h-[780px]
+        "
       >
         {/* ==========================================
-      BACKGROUND MOTION
-  ========================================== */}
+            BACKGROUND GIANT TYPOGRAPHY
+        ========================================== */}
+
+        <motion.div
+          style={{
+            x: backgroundTextX,
+            y: backgroundTextY,
+          }}
+          className="
+            pointer-events-none
+            absolute
+            left-[-4%]
+            top-1/2
+
+            w-[115%]
+            -translate-y-1/2
+
+            select-none
+          "
+        >
+          {/* LET'S */}
+
+          <div
+            className="
+              whitespace-nowrap
+
+              text-[clamp(120px,19vw,350px)]
+              font-black
+              leading-[0.72]
+              tracking-[-0.085em]
+
+              text-transparent
+
+              [-webkit-text-stroke:1px_rgba(255,255,255,0.045)]
+            "
+          >
+            LET&apos;S
+          </div>
+
+          {/* MAKE */}
+
+          <div
+            className="
+              ml-[8vw]
+              whitespace-nowrap
+
+              text-[clamp(120px,19vw,350px)]
+              font-black
+              leading-[0.72]
+              tracking-[-0.085em]
+
+              text-transparent
+
+              [-webkit-text-stroke:1px_rgba(222,19,52,0.13)]
+            "
+          >
+            MAKE
+          </div>
+
+          {/* IT */}
+
+          <div
+            className="
+              ml-[42vw]
+              whitespace-nowrap
+
+              text-[clamp(120px,19vw,350px)]
+              font-black
+              leading-[0.72]
+              tracking-[-0.085em]
+
+              text-transparent
+
+              [-webkit-text-stroke:1px_rgba(255,255,255,0.045)]
+            "
+          >
+            IT.
+          </div>
+        </motion.div>
+
+        {/* ==========================================
+            TOP LABEL
+        ========================================== */}
 
         <motion.div
           initial={{
-            x: 80,
-            y: -40,
-            scale: 0.8,
             opacity: 0,
+            y: 15,
           }}
           whileInView={{
-            x: 0,
-            y: 0,
-            scale: 1,
             opacity: 1,
+            y: 0,
           }}
           viewport={{
             once: true,
-            amount: 0.4,
+            amount: 0.5,
           }}
           transition={{
-            duration: 1.4,
+            duration: 0.7,
             ease: [0.22, 1, 0.36, 1],
           }}
           className="
-      pointer-events-none
-      absolute
-      -right-[140px]
-      -top-[180px]
+            absolute
+            left-5
+            top-7
+            z-20
 
-      h-[440px]
-      w-[440px]
+            flex
+            items-center
+            gap-3
 
-      rounded-full
+            md:left-8
+            md:top-9
+          "
+        >
+          <span
+            className="
+              text-[10px]
+              font-semibold
+              tracking-[0.28em]
+              text-white/45
 
-      bg-[#de1334]/10
-    "
-        />
+              md:text-[11px]
+            "
+          >
+            CONTACT
+          </span>
 
-        {/* 천천히 떠다니는 원 */}
+          <span
+            className="
+              h-px
+              w-8
+              bg-[#DE1334]
+            "
+          />
+
+          <span
+            className="
+              text-[10px]
+              font-semibold
+              tracking-[0.15em]
+              text-[#DE1334]
+
+              md:text-[11px]
+            "
+          >
+            05
+          </span>
+        </motion.div>
+
+        {/* ==========================================
+            RIGHT BRAND DOT
+        ========================================== */}
 
         <motion.div
           animate={{
-            y: [0, 18, 0],
-            x: [0, -12, 0],
+            scale: [1, 1.18, 1],
+            opacity: [0.55, 1, 0.55],
           }}
           transition={{
-            duration: 6,
+            duration: 2.4,
             repeat: Infinity,
             ease: "easeInOut",
           }}
           className="
-      pointer-events-none
-      absolute
-      -right-[70px]
-      top-[20px]
+            pointer-events-none
+            absolute
+            right-[8%]
+            top-[17%]
 
-      h-[150px]
-      w-[150px]
+            h-[9px]
+            w-[9px]
 
-      rounded-full
+            rounded-full
+            bg-[#DE1334]
 
-      border
-      border-[#de1334]/20
-    "
+            shadow-[0_0_22px_rgba(222,19,52,0.6)]
+          "
         />
 
         {/* ==========================================
-      CONTENT
-  ========================================== */}
+            RIGHT RED GLOW
+        ========================================== */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            scale: 0.8,
+          }}
+          whileInView={{
+            opacity: 1,
+            scale: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 1.5,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="
+            pointer-events-none
+            absolute
+            -bottom-[220px]
+            -right-[130px]
+
+            h-[430px]
+            w-[430px]
+
+            rounded-full
+
+            bg-[#DE1334]/[0.10]
+
+            blur-[75px]
+          "
+        />
+
+        {/* ==========================================
+            LEFT GLOW
+        ========================================== */}
 
         <div
           className="
-      relative
-      z-10
+            pointer-events-none
+            absolute
+            -bottom-[150px]
+            -left-[160px]
 
-      mx-auto
-      flex
-      w-full
-      max-w-[1100px]
-      flex-col
-      items-center
+            h-[330px]
+            w-[330px]
 
-      text-center
-    "
+            rounded-full
+
+            bg-[#DE1334]/[0.04]
+
+            blur-[80px]
+          "
+        />
+
+        {/* ==========================================
+            MOVING RED LINE
+        ========================================== */}
+
+        <motion.div
+          style={{
+            x: lineX,
+          }}
+          className="
+            pointer-events-none
+            absolute
+            left-[-15%]
+            top-[27%]
+
+            h-px
+            w-[58%]
+
+            rotate-[-8deg]
+
+            bg-gradient-to-r
+            from-transparent
+            via-[#DE1334]/50
+            to-transparent
+          "
+        />
+
+        {/* ==========================================
+            MOVING RED POINT
+        ========================================== */}
+
+        <motion.span
+          animate={{
+            x: [0, 120, 0],
+            opacity: [0.3, 1, 0.3],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="
+            pointer-events-none
+            absolute
+            left-[26%]
+            top-[22%]
+
+            h-[5px]
+            w-[5px]
+
+            rounded-full
+            bg-[#DE1334]
+
+            shadow-[0_0_18px_rgba(222,19,52,0.6)]
+          "
+        />
+
+        {/* ==========================================
+            CENTER CONTENT
+        ========================================== */}
+
+        <div
+          className="
+            relative
+            z-10
+
+            mx-auto
+            flex
+            min-h-[460px]
+            w-full
+            max-w-[1100px]
+
+            flex-col
+            items-center
+            justify-center
+
+            text-center
+
+            md:min-h-[540px]
+          "
         >
-          {/* TITLE */}
+          {/* ==========================================
+              EYEBROW
+          ========================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 15,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.6,
+            }}
+            transition={{
+              duration: 0.6,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="
+              mb-5
+              flex
+              items-center
+              gap-3
+            "
+          >
+            <span
+              className="
+                h-[5px]
+                w-[5px]
+                rounded-full
+                bg-[#DE1334]
+              "
+            />
+
+            <span
+              className="
+                text-[10px]
+                font-medium
+                uppercase
+                tracking-[0.32em]
+                text-white/45
+
+                md:text-[11px]
+              "
+            >
+              START A PROJECT
+            </span>
+
+            <span
+              className="
+                h-[5px]
+                w-[5px]
+                rounded-full
+                bg-[#DE1334]
+              "
+            />
+          </motion.div>
+
+          {/* ==========================================
+              TITLE
+          ========================================== */}
 
           <h2
             className="
-        break-keep
+              break-keep
 
-        text-[42px]
-        font-bold
-        leading-[1.2]
-        tracking-[-0.06em]
+              text-[40px]
+              font-bold
+              leading-[1.12]
+              tracking-[-0.06em]
 
-        text-white
+              text-white
 
-        sm:text-[42px]
-        md:text-[54px]
-      "
+              sm:text-[44px]
+              md:text-[58px]
+              lg:text-[68px]
+            "
           >
+            {/* FIRST LINE */}
+
             <motion.span
               initial={{
                 opacity: 0,
-                y: 35,
+                y: 40,
+                filter: "blur(8px)",
               }}
               whileInView={{
                 opacity: 1,
                 y: 0,
+                filter: "blur(0px)",
               }}
               viewport={{
                 once: true,
                 amount: 0.5,
               }}
               transition={{
-                duration: 0.75,
+                duration: 0.8,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="inline-block"
+              className="
+                inline-block
+              "
             >
               아이디어가 있다면,
             </motion.span>
 
             <br />
 
+            {/* SECOND LINE */}
+
             <motion.span
               initial={{
                 opacity: 0,
-                y: 35,
+                y: 40,
+                filter: "blur(8px)",
               }}
               whileInView={{
                 opacity: 1,
                 y: 0,
+                filter: "blur(0px)",
               }}
               viewport={{
                 once: true,
                 amount: 0.5,
               }}
               transition={{
-                duration: 0.75,
-                delay: 0.18,
+                duration: 0.8,
+                delay: 0.16,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="
-          inline-block
-          text-[#de1334]
-        "
+                relative
+                inline-block
+
+                text-[#DE1334]
+              "
             >
               이제 시작해볼까요?
+              {/* 작은 점 */}
+              <motion.span
+                animate={{
+                  scale: [1, 1.4, 1],
+                  opacity: [0.7, 1, 0.7],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="
+                  absolute
+                  -right-[14px]
+                  top-[10px]
+
+                  hidden
+
+                  h-[6px]
+                  w-[6px]
+
+                  rounded-full
+                  bg-[#DE1334]
+
+                  md:block
+                "
+              />
             </motion.span>
           </h2>
 
-          {/* BUTTON */}
+          {/* ==========================================
+              DESCRIPTION
+          ========================================== */}
+
+          <motion.p
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.5,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.3,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="
+              mt-5
+              max-w-[470px]
+
+              break-keep
+
+              text-[13px]
+              leading-[1.8]
+
+              text-white/45
+
+              md:text-[14px]
+            "
+          >
+            브랜드의 시작부터 실제 웹으로 구현되는 순간까지,
+            <br className="hidden sm:block" />
+            필요한 과정을 하나의 흐름으로 만듭니다.
+          </motion.p>
+
+          {/* ==========================================
+              CONTACT BUTTON
+          ========================================== */}
 
           <motion.div
             initial={{
@@ -293,82 +598,81 @@ export default function ContactSection() {
               amount: 0.5,
             }}
             transition={{
-              duration: 0.6,
-              delay: 0.42,
+              duration: 0.65,
+              delay: 0.43,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="mt-9"
+            className="
+              mt-9
+            "
           >
             <motion.button
               type="button"
               onClick={() => setIsOpen(true)}
               whileHover={{
-                scale: 1.05,
+                scale: 1.04,
               }}
               whileTap={{
                 scale: 0.97,
               }}
               className="
-          group
+                group
 
-          flex
-          items-center
-          gap-4
+                flex
+                items-center
+                gap-4
 
-          rounded-full
+                rounded-full
 
-          bg-[#de1334]
+                bg-[#DE1334]
 
-          px-8
-          py-4
+                px-8
+                py-4
 
-          text-[22px]
-          font-bold
-          text-white
+                text-[17px]
+                font-bold
+                text-white
 
-          shadow-[0_14px_40px_rgba(222,19,52,0.22)]
+                shadow-[0_18px_55px_rgba(222,19,52,0.25)]
 
-          transition-colors
-          duration-300
+                transition-all
+                duration-300
 
-          hover:bg-[#c9112f]
-        "
+                hover:bg-[#c9112f]
+                hover:shadow-[0_22px_65px_rgba(222,19,52,0.35)]
+
+                md:text-[19px]
+              "
             >
-              상담하기
-              <motion.span
-                animate={{
-                  x: [0, 3, 0],
-                }}
-                transition={{
-                  duration: 1.8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+              프로젝트 상담하기
+              <span
                 className="
-            flex
-            h-9
-            w-9
-            items-center
-            justify-center
+                  flex
+                  h-9
+                  w-9
+                  items-center
+                  justify-center
 
-            rounded-full
+                  rounded-full
 
-            bg-white
+                  bg-white
 
-            text-[#de1334]
+                  text-[#DE1334]
 
-            transition-transform
-            duration-300
+                  transition-transform
+                  duration-300
 
-            group-hover:rotate-45
-          "
+                  group-hover:rotate-45
+                "
               >
                 <ArrowUpRight size={17} strokeWidth={2} />
-              </motion.span>
+              </span>
             </motion.button>
           </motion.div>
 
-          {/* 얇은 움직이는 포인트 라인 */}
+          {/* ==========================================
+              CENTER RED LINE
+          ========================================== */}
 
           <motion.div
             initial={{
@@ -389,611 +693,139 @@ export default function ContactSection() {
               ease: [0.22, 1, 0.36, 1],
             }}
             className="
-        mt-10
-        h-px
-        w-[120px]
-        origin-center
+              mt-10
 
-        bg-gradient-to-r
-        from-transparent
-        via-[#de1334]
-        to-transparent
-      "
+              h-px
+              w-[140px]
+
+              origin-center
+
+              bg-gradient-to-r
+              from-transparent
+              via-[#DE1334]
+              to-transparent
+            "
           />
+        </div>
+
+        {/* ==========================================
+            BOTTOM AREA
+        ========================================== */}
+
+        <div
+          className="
+            absolute
+            bottom-6
+            left-5
+            right-5
+            z-20
+
+            flex
+            items-end
+            justify-between
+
+            border-t
+            border-white/[0.08]
+
+            pt-5
+
+            md:bottom-8
+            md:left-8
+            md:right-8
+          "
+        >
+          {/* BRAND */}
+
+          <div>
+            <p
+              className="
+                text-[10px]
+                font-semibold
+                tracking-[0.22em]
+                text-white/55
+              "
+            >
+              MADE BY YOUNG
+              <span className="text-[#DE1334]">.</span>
+            </p>
+
+            <p
+              className="
+                mt-1
+
+                text-[9px]
+                tracking-[0.16em]
+
+                text-white/25
+              "
+            >
+              WEB DESIGN · DEVELOPMENT
+            </p>
+          </div>
+
+          {/* END INDICATOR */}
+
+          <motion.div
+            animate={{
+              y: [0, 5, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="
+              flex
+              flex-col
+              items-center
+              gap-2
+            "
+          >
+            <div
+              className="
+                relative
+
+                h-[25px]
+                w-px
+
+                bg-white/15
+              "
+            >
+              <span
+                className="
+                  absolute
+                  bottom-0
+                  left-1/2
+
+                  h-[4px]
+                  w-[4px]
+
+                  -translate-x-1/2
+
+                  rounded-full
+                  bg-[#DE1334]
+                "
+              />
+            </div>
+
+            <span
+              className="
+                text-[8px]
+                tracking-[0.25em]
+                text-white/25
+              "
+            >
+              END
+            </span>
+          </motion.div>
         </div>
       </section>
 
       {/* ==========================================
-          MODAL
+          PROJECT CONTACT MODAL
       ========================================== */}
 
-      {isOpen && (
-        <div
-          className="
-            fixed
-            inset-0
-            z-[999]
-
-            flex
-            items-center
-            justify-center
-
-            bg-black/55
-
-            px-4
-            py-6
-
-            backdrop-blur-[6px]
-          "
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
-              closeModal();
-            }
-          }}
-        >
-          <div
-            className="
-              relative
-
-              max-h-[calc(100vh-48px)]
-              w-full
-              max-w-[620px]
-
-              overflow-y-auto
-
-              rounded-[28px]
-
-              bg-white
-
-              shadow-[0_30px_100px_rgba(0,0,0,0.25)]
-
-              sm:rounded-[32px]
-            "
-          >
-            {/* CLOSE */}
-
-            <button
-              type="button"
-              onClick={closeModal}
-              aria-label="상담 모달 닫기"
-              className="
-                absolute
-                right-5
-                top-5
-                z-20
-
-                flex
-                h-10
-                w-10
-                items-center
-                justify-center
-
-                rounded-full
-
-                bg-[#f5f5f5]
-
-                text-[#555]
-
-                transition-colors
-
-                hover:bg-[#ececec]
-                hover:text-black
-              "
-            >
-              <X size={18} />
-            </button>
-
-            {!isSubmitted ? (
-              <>
-                {/* MODAL HEADER */}
-
-                <div
-                  className="
-                    border-b
-                    border-black/[0.07]
-
-                    px-6
-                    pb-6
-                    pt-8
-
-                    sm:px-8
-                    sm:pb-7
-                    sm:pt-9
-                  "
-                >
-                  <p
-                    className="
-                      mb-2
-
-                      text-[12px]
-                      font-bold
-
-                      text-[#de1334]
-                    "
-                  >
-                    프로젝트 상담
-                  </p>
-
-                  <h3
-                    className="
-                      text-[27px]
-                      font-bold
-                      tracking-[-0.05em]
-
-                      text-[#171717]
-
-                      sm:text-[31px]
-                    "
-                  >
-                    어떤 홈페이지를
-                    <br />
-                    만들고 싶으신가요?
-                  </h3>
-
-                  <p
-                    className="
-                      mt-3
-
-                      text-[13px]
-                      leading-[1.7]
-
-                      text-[#777]
-                    "
-                  >
-                    아직 구체적으로 정해지지 않아도 괜찮습니다. 아는 내용만
-                    편하게 작성해 주세요.
-                  </p>
-                </div>
-
-                {/* FORM */}
-
-                <form
-                  onSubmit={handleSubmit}
-                  className="
-                    px-6
-                    py-7
-
-                    sm:px-8
-                    sm:py-8
-                  "
-                >
-                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    {/* NAME */}
-
-                    <label className="block">
-                      <span className="mb-2 block text-[12px] font-bold text-[#444]">
-                        이름 / 업체명
-                        <span className="ml-1 text-[#de1334]">*</span>
-                      </span>
-
-                      <input
-                        type="text"
-                        required
-                        value={form.name}
-                        onChange={(e) => handleChange("name", e.target.value)}
-                        placeholder="성함 또는 업체명"
-                        className="
-                          w-full
-
-                          rounded-[14px]
-
-                          border
-                          border-black/[0.1]
-
-                          bg-[#fafafa]
-
-                          px-4
-                          py-3.5
-
-                          text-[14px]
-                          text-[#222]
-
-                          outline-none
-
-                          transition
-
-                          placeholder:text-[#aaa]
-
-                          focus:border-[#de1334]/50
-                          focus:bg-white
-                          focus:ring-4
-                          focus:ring-[#de1334]/[0.06]
-                        "
-                      />
-                    </label>
-
-                    {/* PHONE */}
-
-                    <label className="block">
-                      <span className="mb-2 block text-[12px] font-bold text-[#444]">
-                        연락처
-                        <span className="ml-1 text-[#de1334]">*</span>
-                      </span>
-
-                      <input
-                        type="tel"
-                        required
-                        value={form.phone}
-                        onChange={(e) => handleChange("phone", e.target.value)}
-                        placeholder="010-0000-0000"
-                        className="
-                          w-full
-
-                          rounded-[14px]
-
-                          border
-                          border-black/[0.1]
-
-                          bg-[#fafafa]
-
-                          px-4
-                          py-3.5
-
-                          text-[14px]
-
-                          outline-none
-
-                          transition
-
-                          placeholder:text-[#aaa]
-
-                          focus:border-[#de1334]/50
-                          focus:bg-white
-                          focus:ring-4
-                          focus:ring-[#de1334]/[0.06]
-                        "
-                      />
-                    </label>
-                  </div>
-
-                  {/* TYPE */}
-
-                  <label className="mt-5 block">
-                    <span className="mb-2 block text-[12px] font-bold text-[#444]">
-                      어떤 작업이 필요하신가요?
-                    </span>
-
-                    <div className="relative">
-                      <select
-                        value={form.type}
-                        onChange={(e) => handleChange("type", e.target.value)}
-                        className="
-                          w-full
-                          appearance-none
-
-                          rounded-[14px]
-
-                          border
-                          border-black/[0.1]
-
-                          bg-[#fafafa]
-
-                          px-4
-                          py-3.5
-
-                          pr-11
-
-                          text-[14px]
-                          text-[#333]
-
-                          outline-none
-
-                          transition
-
-                          focus:border-[#de1334]/50
-                          focus:bg-white
-                          focus:ring-4
-                          focus:ring-[#de1334]/[0.06]
-                        "
-                      >
-                        <option value="">제작 유형을 선택해 주세요.</option>
-
-                        <option value="맞춤 홈페이지">맞춤 홈페이지</option>
-
-                        <option value="스타터 홈페이지">스타터 홈페이지</option>
-
-                        <option value="홈페이지 리뉴얼">홈페이지 리뉴얼</option>
-
-                        <option value="맞춤 기능 개발">맞춤 기능 개발</option>
-
-                        <option value="AI · 업무 자동화">
-                          AI · 업무 자동화
-                        </option>
-
-                        <option value="유지보수">유지보수</option>
-
-                        <option value="기타">아직 잘 모르겠어요</option>
-                      </select>
-
-                      <ChevronDown
-                        size={16}
-                        className="
-                          pointer-events-none
-
-                          absolute
-                          right-4
-                          top-1/2
-
-                          -translate-y-1/2
-
-                          text-[#888]
-                        "
-                      />
-                    </div>
-                  </label>
-
-                  {/* BUDGET */}
-
-                  <label className="mt-5 block">
-                    <span className="mb-2 block text-[12px] font-bold text-[#444]">
-                      예상 예산
-                    </span>
-
-                    <div className="relative">
-                      <select
-                        value={form.budget}
-                        onChange={(e) => handleChange("budget", e.target.value)}
-                        className="
-                          w-full
-                          appearance-none
-
-                          rounded-[14px]
-
-                          border
-                          border-black/[0.1]
-
-                          bg-[#fafafa]
-
-                          px-4
-                          py-3.5
-
-                          pr-11
-
-                          text-[14px]
-                          text-[#333]
-
-                          outline-none
-
-                          transition
-
-                          focus:border-[#de1334]/50
-                          focus:bg-white
-                          focus:ring-4
-                          focus:ring-[#de1334]/[0.06]
-                        "
-                      >
-                        <option value="">예상 예산을 선택해 주세요.</option>
-
-                        <option value="50만원 이하">50만원 이하</option>
-
-                        <option value="50~100만원">50~100만원</option>
-
-                        <option value="100~200만원">100~200만원</option>
-
-                        <option value="200만원 이상">200만원 이상</option>
-
-                        <option value="상담 후 결정">상담 후 결정</option>
-                      </select>
-
-                      <ChevronDown
-                        size={16}
-                        className="
-                          pointer-events-none
-
-                          absolute
-                          right-4
-                          top-1/2
-
-                          -translate-y-1/2
-
-                          text-[#888]
-                        "
-                      />
-                    </div>
-                  </label>
-
-                  {/* MESSAGE */}
-
-                  <label className="mt-5 block">
-                    <span className="mb-2 block text-[12px] font-bold text-[#444]">
-                      프로젝트 내용
-                    </span>
-
-                    <textarea
-                      value={form.message}
-                      onChange={(e) => handleChange("message", e.target.value)}
-                      placeholder={`예)
-회사 홈페이지를 새로 만들고 싶어요.
-아직 기획은 없고 참고 사이트만 있습니다.`}
-                      rows={5}
-                      className="
-                        w-full
-
-                        resize-none
-
-                        rounded-[14px]
-
-                        border
-                        border-black/[0.1]
-
-                        bg-[#fafafa]
-
-                        px-4
-                        py-3.5
-
-                        text-[14px]
-                        leading-[1.7]
-
-                        outline-none
-
-                        transition
-
-                        placeholder:text-[#aaa]
-
-                        focus:border-[#de1334]/50
-                        focus:bg-white
-                        focus:ring-4
-                        focus:ring-[#de1334]/[0.06]
-                      "
-                    />
-                  </label>
-
-                  {/* SUBMIT */}
-
-                  <button
-                    type="submit"
-                    className="
-                      mt-6
-
-                      flex
-                      w-full
-                      items-center
-                      justify-center
-                      gap-2
-
-                      rounded-[15px]
-
-                      bg-[#de1334]
-
-                      px-5
-                      py-4
-
-                      text-[14px]
-                      font-bold
-                      text-white
-
-                      transition-all
-                      duration-300
-
-                      hover:bg-[#c9112f]
-                    "
-                  >
-                    상담 신청하기
-                    <Send size={15} strokeWidth={2} />
-                  </button>
-
-                  <p
-                    className="
-                      mt-3
-
-                      text-center
-
-                      text-[11px]
-                      leading-[1.6]
-
-                      text-[#999]
-                    "
-                  >
-                    남겨주신 내용을 확인한 뒤 연락드리겠습니다.
-                  </p>
-                </form>
-              </>
-            ) : (
-              /* ==========================================
-                  SUCCESS
-              ========================================== */
-
-              <div
-                className="
-                  flex
-                  min-h-[440px]
-                  flex-col
-                  items-center
-                  justify-center
-
-                  px-7
-                  py-12
-
-                  text-center
-                "
-              >
-                <div
-                  className="
-                    flex
-                    h-14
-                    w-14
-                    items-center
-                    justify-center
-
-                    rounded-full
-
-                    bg-[#fff0f2]
-
-                    text-[#de1334]
-                  "
-                >
-                  <Check size={24} strokeWidth={2.4} />
-                </div>
-
-                <p
-                  className="
-                    mt-6
-
-                    text-[13px]
-                    font-bold
-
-                    text-[#de1334]
-                  "
-                >
-                  상담 신청 완료
-                </p>
-
-                <h3
-                  className="
-                    mt-2
-
-                    text-[27px]
-                    font-bold
-                    tracking-[-0.05em]
-
-                    text-[#171717]
-                  "
-                >
-                  문의 감사합니다.
-                </h3>
-
-                <p
-                  className="
-                    mt-3
-
-                    break-keep
-
-                    text-[14px]
-                    leading-[1.8]
-
-                    text-[#666]
-                  "
-                >
-                  남겨주신 내용을 확인한 후
-                  <br />
-                  최대한 빠르게 연락드리겠습니다.
-                </p>
-
-                <button
-                  type="button"
-                  onClick={closeModal}
-                  className="
-                    mt-8
-
-                    rounded-full
-
-                    bg-[#171717]
-
-                    px-7
-                    py-3.5
-
-                    text-[13px]
-                    font-bold
-                    text-white
-                  "
-                >
-                  확인
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      <ProjectContactModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 }
