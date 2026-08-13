@@ -441,157 +441,54 @@ function WebsiteVisual() {
     <div
       className="
         relative
-        h-[420px]
+        flex
+        h-[380px]
         w-full
-        md:h-[540px]
+        items-center
+        justify-center
+        md:h-[520px]
         lg:h-[620px]
       "
     >
-      {/* 메인 NOIRE */}
       <motion.div
+        initial={{
+          opacity: 0,
+          y: 25,
+          scale: 0.96,
+        }}
         animate={{
+          opacity: 1,
           y: [0, -7, 0],
+          scale: 1,
         }}
         transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
+          opacity: {
+            duration: 0.7,
+          },
+          scale: {
+            duration: 0.7,
+          },
+          y: {
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          },
         }}
         className="
-          absolute
-          left-1/2
-          top-1/2
-          z-10
-          w-[76%]
-          -translate-x-1/2
-          -translate-y-1/2
-          overflow-hidden
-          rounded-[24px]
-          border
-          border-black/[0.08]
-          bg-white
-          shadow-[0_35px_100px_rgba(0,0,0,0.16)]
+          relative
+          w-full
+          max-w-[760px]
         "
       >
-        <BrowserHeader />
-
-        <div className="h-[310px] overflow-hidden md:h-[400px]">
-          <img
-            src="/images/works/noire.png"
-            alt="NOIRE 홈페이지"
-            className="h-full w-full object-cover object-top"
-          />
-        </div>
-      </motion.div>
-
-      {/* 왼쪽 아래 MOOD ME */}
-      <motion.div
-        animate={{
-          y: [0, 7, 0],
-          rotate: [-4, -2, -4],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="
-          absolute
-          bottom-[2%]
-          left-[0%]
-          z-20
-          w-[37%]
-          overflow-hidden
-          rounded-[18px]
-          border
-          border-black/[0.08]
-          bg-white
-          shadow-[0_25px_70px_rgba(0,0,0,0.14)]
-        "
-      >
-        <BrowserHeader />
-
-        <div className="h-[150px] overflow-hidden md:h-[200px]">
-          <img
-            src="/images/works/mood-me.png"
-            alt="Mood ME 홈페이지"
-            className="h-full w-full object-cover object-top"
-          />
-        </div>
-      </motion.div>
-
-      {/* 오른쪽 위 제주누리 */}
-      <motion.div
-        animate={{
-          y: [0, -6, 0],
-          rotate: [4, 2, 4],
-        }}
-        transition={{
-          duration: 6.4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="
-          absolute
-          right-[0%]
-          top-[3%]
-          z-[5]
-          hidden
-          w-[36%]
-          overflow-hidden
-          rounded-[18px]
-          border
-          border-black/[0.08]
-          bg-white
-          shadow-[0_25px_70px_rgba(0,0,0,0.13)]
-          md:block
-        "
-      >
-        <BrowserHeader />
-
-        <div className="h-[175px] overflow-hidden">
-          <img
-            src="/images/works/jejunuri.png"
-            alt="제주누리 홈페이지"
-            className="h-full w-full object-cover object-top"
-          />
-        </div>
-      </motion.div>
-
-      {/* 오른쪽 아래 LIVMOVE */}
-      <motion.div
-        animate={{
-          y: [0, 8, 0],
-          rotate: [3, 1, 3],
-        }}
-        transition={{
-          duration: 5.8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="
-          absolute
-          bottom-[0%]
-          right-[1%]
-          z-30
-          w-[36%]
-          overflow-hidden
-          rounded-[18px]
-          border
-          border-black/[0.08]
-          bg-white
-          shadow-[0_25px_70px_rgba(0,0,0,0.14)]
-        "
-      >
-        <BrowserHeader />
-
-        <div className="h-[155px] overflow-hidden md:h-[205px]">
-          <img
-            src="/images/works/livmove.png"
-            alt="리브무브 홈페이지"
-            className="h-full w-full object-cover object-top"
-          />
-        </div>
+        <img
+          src="/images/website-mockup.png"
+          alt="PC와 모바일 홈페이지 제작 예시"
+          className="
+            h-auto
+            w-full
+            object-contain
+          "
+        />
       </motion.div>
     </div>
   );

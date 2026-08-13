@@ -89,15 +89,15 @@ const searchResults = [
       "좋은 홈페이지는 디자인뿐만 아니라 사용자 경험과 콘텐츠 구조, 모바일 환경까지 함께 고려해야 합니다.",
     top: false,
   },
-  {
-    site: "DIGITAL BUSINESS",
-    url: "digital-business.kr",
-    initial: "D",
-    title: "비즈니스 성장을 위한 웹사이트 구축 가이드",
-    description:
-      "검색 노출부터 고객 문의, 데이터 관리까지 비즈니스에 필요한 웹사이트의 핵심 요소를 살펴봅니다.",
-    top: false,
-  },
+  // {
+  //   site: "DIGITAL BUSINESS",
+  //   url: "digital-business.kr",
+  //   initial: "D",
+  //   title: "비즈니스 성장을 위한 웹사이트 구축 가이드",
+  //   description:
+  //     "검색 노출부터 고객 문의, 데이터 관리까지 비즈니스에 필요한 웹사이트의 핵심 요소를 살펴봅니다.",
+  //   top: false,
+  // },
 ];
 
 export default function HeroSection() {
@@ -418,10 +418,9 @@ export default function HeroSection() {
         }}
         className="
           relative
-          flex
-          min-h-screen
+          h-[100dvh]
+          min-h-[700px]
           w-full
-          items-center
           overflow-hidden
         "
       >
@@ -429,24 +428,22 @@ export default function HeroSection() {
           className="
             mx-auto
             grid
-            min-h-screen
+            h-full
             w-full
-            max-w-[1500px]
+            max-w-[1400px]
 
             grid-cols-1
 
-            items-center
-
             px-6
-            pb-28
-            pt-28
+            pb-24
+            pt-20
 
             md:px-10
 
-            lg:grid-cols-[1fr_1fr]
+            lg:grid-cols-[0.92fr_1.08fr]
             lg:px-14
-            lg:pb-24
-            lg:pt-24
+            lg:pb-20
+            lg:pt-20
 
             xl:px-16
           "
@@ -459,6 +456,10 @@ export default function HeroSection() {
             className="
               relative
               z-20
+
+              flex
+              h-full
+              items-center
 
               lg:pr-12
             "
@@ -482,6 +483,7 @@ export default function HeroSection() {
                   duration: 0.7,
                   ease: [0.16, 1, 0.3, 1],
                 }}
+                className="w-full -translate-y-[2%]"
               >
                 {/* EYEBROW */}
 
@@ -586,16 +588,14 @@ lg:text-[25px]
             className="
               relative
 
-              mt-14
-
               flex
-              min-h-[360px]
+              h-full
+              min-h-0
 
               items-center
               justify-center
 
-              lg:mt-0
-              lg:min-h-[650px]
+              lg:pl-4
             "
           >
             <AnimatePresence mode="wait">
@@ -664,7 +664,7 @@ lg:text-[25px]
         <div
           className="
             absolute
-            bottom-32
+            bottom-8
             left-6
             z-30
 
@@ -672,9 +672,13 @@ lg:text-[25px]
             items-center
             gap-3
 
+            md:bottom-10
             md:left-10
 
-            lg:left-[max(3.5rem,calc((100vw-1500px)/2+3.5rem))]
+            lg:bottom-12
+            lg:left-[max(3.5rem,calc((100vw-1400px)/2+3.5rem))]
+
+            xl:left-[max(4rem,calc((100vw-1400px)/2+4rem))]
           "
         >
           {slides.map((item, index) => (
@@ -821,138 +825,67 @@ lg:text-[25px]
 
 function WebsiteVisual() {
   return (
-    <div className="relative h-[420px] w-full md:h-[540px] lg:h-[620px]">
-      {/* ==========================================
-          MAIN - NOIRE
-      ========================================== */}
+    <div
+      className="
+        relative
+        flex
+        h-[420px]
+        w-full
+        items-center
+        justify-center
+
+        md:h-[540px]
+        lg:h-[620px]
+      "
+    >
       <motion.div
+        initial={{
+          opacity: 0,
+          y: 30,
+          scale: 0.96,
+        }}
         animate={{
-          y: [0, -7, 0],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="
-          absolute
-          left-[8%]
-          top-[13%]
-          z-10
-          w-[76%]
-          overflow-hidden
-          rounded-[22px]
-          border
-          border-black/10
-          bg-white
-          shadow-[0_35px_90px_rgba(0,0,0,0.18)]
-        "
-      >
-        <BrowserHeader />
-
-        <div className="relative h-[300px] overflow-hidden md:h-[390px]">
-          <img
-            src="/images/works/noire.png"
-            alt="NOIRE 홈페이지"
-            className="
-              h-full
-              w-full
-              object-cover
-              object-top
-            "
-          />
-        </div>
-      </motion.div>
-
-      {/* ==========================================
-          LEFT BOTTOM - MOOD ME
-      ========================================== */}
-      <motion.div
-        animate={{
-          y: [0, 7, 0],
-          rotate: [-4, -2, -4],
-        }}
-        transition={{
-          duration: 5.8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="
-          absolute
-          bottom-[3%]
-          left-[0%]
-          z-20
-          w-[38%]
-          overflow-hidden
-          rounded-[18px]
-          border
-          border-black/10
-          bg-white
-          shadow-[0_25px_60px_rgba(0,0,0,0.16)]
-        "
-      >
-        <BrowserHeader />
-
-        <div className="h-[155px] overflow-hidden md:h-[200px]">
-          <img
-            src="/images/works/mood-me.png"
-            alt="Mood ME 홈페이지"
-            className="
-              h-full
-              w-full
-              object-cover
-              object-top
-            "
-          />
-        </div>
-      </motion.div>
-
-      {/* ==========================================
-          RIGHT BOTTOM - LIVMOVE
-      ========================================== */}
-      <motion.div
-        animate={{
+          opacity: 1,
           y: [0, -8, 0],
-          rotate: [4, 2, 4],
+          scale: 1,
         }}
         transition={{
-          duration: 6.2,
-          repeat: Infinity,
-          ease: "easeInOut",
+          opacity: {
+            duration: 0.7,
+            ease: [0.16, 1, 0.3, 1],
+          },
+          scale: {
+            duration: 0.7,
+            ease: [0.16, 1, 0.3, 1],
+          },
+          y: {
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          },
         }}
         className="
-          absolute
-          bottom-[0%]
-          right-[0%]
-          z-30
-          w-[40%]
-          overflow-hidden
-          rounded-[18px]
-          border
-          border-black/10
-          bg-white
-          shadow-[0_25px_60px_rgba(0,0,0,0.16)]
+          relative
+          w-[100%]
+          max-w-[820px]
+
+          md:w-[96%]
+          lg:w-[105%]
         "
       >
-        <BrowserHeader />
-
-        <div className="h-[160px] overflow-hidden md:h-[210px]">
-          <img
-            src="/images/works/livmove.png"
-            alt="리브무브 홈페이지"
-            className="
-              h-full
-              w-full
-              object-cover
-              object-top
-            "
-          />
-        </div>
+        <img
+          src="/images/website-mockup.png"
+          alt="PC와 모바일 홈페이지 제작 예시"
+          className="
+            h-auto
+            w-full
+            object-contain
+          "
+        />
       </motion.div>
     </div>
   );
 }
-
 /* ============================================================
    02 DEVELOPMENT
 ============================================================ */
@@ -1323,7 +1256,7 @@ function DevelopmentVisual() {
                     p-3
 
                     md:rounded-[15px]
-                    md:p-5
+                    md:p-3
                   "
                 >
                   <div
@@ -1727,7 +1660,7 @@ function SeoVisual() {
               shadow-[0_2px_10px_rgba(0,0,0,0.04)]
 
               md:px-6
-              md:py-4
+              md:py-2
             "
           >
             <div

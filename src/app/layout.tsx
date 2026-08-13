@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
+import QuickMenu from "@/components/layout/QuickMenu";
 export const metadata: Metadata = {
   // 사이트의 기준 도메인
   metadataBase: new URL("https://madebyyoung.com"),
@@ -80,6 +80,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>{children}</body>
+      <QuickMenu />
     </html>
   );
 }

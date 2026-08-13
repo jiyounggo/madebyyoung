@@ -3,13 +3,10 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import HeroSection from "@/components/home/HeroSection";
 import IdeaSection from "@/components/home/IdeaSection";
-import IdentitySection from "@/components/home/IdentitySection";
 import ServiceSection from "@/components/home/ServiceSection";
 import InquirySection from "@/components/home/InquirySection";
-
 import SeoBanner from "@/components/home/SeoBanner";
 import ProcessSection from "@/components/home/ProcessSection";
-
 import ContactSection from "@/components/home/ContactSection";
 
 export const metadata: Metadata = {
@@ -29,17 +26,40 @@ export default function HomePage() {
       <Header />
 
       <main>
-        <HeroSection />
-        <IdeaSection />
-        {/* <IdentitySection /> */}
-        <SeoBanner />
-        <ServiceSection />
+        {/* HERO */}
+        <section id="home">
+          <HeroSection />
+        </section>
 
-        <InquirySection />
+        {/* ABOUT */}
+        <section id="about" className="scroll-mt-[90px]">
+          <IdeaSection />
+        </section>
 
-        <ProcessSection />
+        {/* WORK */}
+        <section id="works" className="scroll-mt-[90px]">
+          <SeoBanner />
+        </section>
 
-        <ContactSection />
+        {/* SERVICES */}
+        <section id="services" className="scroll-mt-[90px]">
+          <ServiceSection />
+        </section>
+
+        {/* INQUIRY */}
+        <section id="inquiry" className="scroll-mt-[90px]">
+          <InquirySection />
+        </section>
+
+        {/* PROCESS */}
+        <section id="process" className="scroll-mt-[90px]">
+          <ProcessSection />
+        </section>
+
+        {/* CONTACT */}
+        <section id="contact" className="scroll-mt-[90px]">
+          <ContactSection />
+        </section>
       </main>
     </>
   );

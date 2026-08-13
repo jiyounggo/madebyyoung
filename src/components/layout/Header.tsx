@@ -6,10 +6,13 @@ import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 
 const navItems = [
-  { name: "WORK", href: "/works" },
-  { name: "SERVICES", href: "/services" },
-  { name: "ABOUT", href: "/about" },
-  { name: "CONTACT", href: "/contact" },
+  { name: "ABOUT", href: "#about" },
+  // { name: "WORK", href: "#works" },
+
+  { name: "SERVICES", href: "#services" },
+
+  { name: "PROCESS", href: "#process" },
+  { name: "CONTACT", href: "#contact" },
 ];
 
 export default function Header() {
@@ -19,6 +22,22 @@ export default function Header() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 40);
   });
+
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string,
+  ) => {
+    e.preventDefault();
+
+    const target = document.querySelector(targetId);
+
+    if (!target) return;
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   return (
     <motion.header
@@ -59,9 +78,7 @@ export default function Header() {
           py-[clamp(18px,1.8vw,28px)]
         "
       >
-        {/* ==========================================
-            LOGO
-        ========================================== */}
+        {/* LOGO */}
 
         <Link
           href="/"
@@ -80,10 +97,6 @@ export default function Header() {
               w-[clamp(150px,13vw,220px)]
             "
           >
-            {/* ======================================
-                투명 헤더용 BLACK LOGO
-            ====================================== */}
-
             <Image
               src="/images/header-logo-black.png"
               alt="MADE BY YOUNG"
@@ -108,10 +121,6 @@ export default function Header() {
                 ${isScrolled ? "pointer-events-none opacity-0" : "opacity-100"}
               `}
             />
-
-            {/* ======================================
-                검정 헤더용 WHITE LOGO
-            ====================================== */}
 
             <Image
               src="/images/header-logo-white.png"
@@ -139,8 +148,6 @@ export default function Header() {
             />
           </div>
 
-          {/* HOVER RED LINE */}
-
           <span
             className="
               absolute
@@ -161,9 +168,7 @@ export default function Header() {
           />
         </Link>
 
-        {/* ==========================================
-            DESKTOP MENU
-        ========================================== */}
+        {/* DESKTOP MENU */}
 
         <nav
           aria-label="메인 메뉴"
@@ -176,9 +181,10 @@ export default function Header() {
           "
         >
           {navItems.map((item) => (
-            <Link
+            <a
               key={item.name}
               href={item.href}
+              onClick={(e) => handleScroll(e, item.href)}
               className="
                 group
                 relative
@@ -189,8 +195,6 @@ export default function Header() {
                 tracking-[-0.025em]
               "
             >
-              {/* 기본 메뉴 */}
-
               <span
                 className={`
                   block
@@ -207,8 +211,6 @@ export default function Header() {
               >
                 {item.name}
               </span>
-
-              {/* HOVER 메뉴 */}
 
               <span
                 className="
@@ -228,16 +230,15 @@ export default function Header() {
               >
                 {item.name}
               </span>
-            </Link>
+            </a>
           ))}
         </nav>
 
-        {/* ==========================================
-            MOBILE
-        ========================================== */}
+        {/* MOBILE */}
 
-        <Link
-          href="/contact"
+        <a
+          href="#contact"
+          onClick={(e) => handleScroll(e, "#contact")}
           className={`
             text-[12px]
             font-semibold
@@ -252,7 +253,7 @@ export default function Header() {
         >
           CONTACT
           <span className="ml-1 text-[#DE1334]">↗</span>
-        </Link>
+        </a>
       </div>
     </motion.header>
   );
