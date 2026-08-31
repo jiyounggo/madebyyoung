@@ -6,7 +6,7 @@ import IdeaSection from "@/components/home/IdeaSection";
 import ServiceSection from "@/components/home/ServiceSection";
 import InquirySection from "@/components/home/InquirySection";
 import SeoBanner from "@/components/home/SeoBanner";
-import ProcessSection from "@/components/home/ProcessSection";
+import AboutProfileSection from "@/components/home/AboutProfileSection";
 import ContactSection from "@/components/home/ContactSection";
 import TopBanner from "@/components/layout/TopBanner";
 
@@ -33,9 +33,14 @@ export default function HomePage() {
           <HeroSection />
         </section>
 
-        {/* ABOUT */}
-        <section id="about" className="scroll-mt-[90px]">
-          <IdeaSection />
+        {/* SERVICES */}
+        <section id="services" className="scroll-mt-[90px]">
+          <ServiceSection />
+        </section>
+
+        {/* PROCESS */}
+        <section id="process" className="scroll-mt-[90px]">
+          <AboutProfileSection />
         </section>
 
         {/* WORK */}
@@ -43,19 +48,14 @@ export default function HomePage() {
           <SeoBanner />
         </section>
 
-        {/* SERVICES */}
-        <section id="services" className="scroll-mt-[90px]">
-          <ServiceSection />
+        {/* ABOUT */}
+        <section id="about" className="scroll-mt-[90px]">
+          <IdeaSection />
         </section>
 
         {/* INQUIRY */}
         <section id="inquiry" className="scroll-mt-[90px]">
           <InquirySection />
-        </section>
-
-        {/* PROCESS */}
-        <section id="process" className="scroll-mt-[90px]">
-          <ProcessSection />
         </section>
 
         {/* CONTACT */}

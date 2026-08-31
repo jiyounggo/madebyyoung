@@ -332,7 +332,7 @@ export default function ServiceSection() {
 
     md:p-10
 
-    lg:min-h-[620px]
+    lg:min-h-[650px]
     lg:p-11
   "
             >
