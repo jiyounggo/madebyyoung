@@ -223,7 +223,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                   md:text-[21px]
                 "
               >
-                이거 만들면 진짜 대박 날 것 같은데...
+                요즘 홈페이지는 하나쯤 있어야 한다던데...
               </p>
 
               <p
@@ -240,7 +240,8 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                   md:text-[16px]
                 "
               >
-                아이디어만 떠올랐지 어디서부터 만들어야 할지 잘 모르겠어요ㅠㅠ
+                막상 만들려고 하니까 뭘 준비해야 하는지, 어떤 식으로 만들어야
+                하는지 모르겠어요ㅠㅠ
               </p>
 
               <span
@@ -315,7 +316,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                   md:text-[20px]
                 "
               >
-                그 단계부터 같이 시작하면 돼요.
+                아무것도 정해지지 않아도 괜찮아요.
               </p>
 
               <p
@@ -332,8 +333,8 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                   md:text-[16px]
                 "
               >
-                먼저 아이디어가 어떤 문제를 해결하는지, 실제로 어떤 서비스가
-                되면 좋을지부터 함께 이야기해봐요.
+                어떤 일을 하고 계신지, 홈페이지를 통해 무엇을 보여주고 싶은지만
+                알려주세요. 필요한 구성부터 하나씩 같이 정리해드려요.
               </p>
 
               <span
@@ -459,7 +460,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                   md:text-[19px]
                 "
               >
-                근데 이 아이디어가 진짜 괜찮은지도 모르겠고...
+                홈페이지 제작 비용이 생각보다 많이 들던데요...
               </p>
 
               <p
@@ -476,8 +477,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                   md:text-[16px]
                 "
               >
-                어떤 기능이 필요한지, 화면은 어떻게 구성해야 하는지도 전혀
-                모르겠어요.
+                필요한 기능이 많아질수록 계속 추가 비용이 붙을까 봐 걱정돼요ㅠㅠ
               </p>
 
               <span
@@ -557,7 +557,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                     font-semibold
                   "
                 >
-                  바로 그 부분을 같이 기획합니다.
+                  필요하지 않은 비용까지 받지 않아요.
                 </span>
               </div>
 
@@ -576,9 +576,8 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                   md:text-[18px]
                 "
               >
-                아이디어의 가능성부터 필요한 기능, 사용자 흐름과 화면 구성까지
-                하나씩 정리해서 실제 만들 수 있는 서비스의 형태로
-                구체화해드려요.
+                꼭 필요한 기능과 작업 범위를 먼저 정리하고, 불필요한 기능은
+                덜어내 예산 안에서 가장 효율적인 방법으로 제작해드려요.
               </p>
 
               <span
@@ -752,9 +751,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 md:text-[24px]
               "
             >
-              이 아이디어,
-              <br />
-              어떻게 만들면 좋을까?
+              어떤 홈페이지가 필요한지부터.
             </h3>
 
             <p
@@ -771,8 +768,8 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 md:text-[15px]
               "
             >
-              무엇을 위한 아이디어인지, 누구에게 필요한 서비스인지부터 살펴보며
-              방향을 함께 정리합니다.
+              어떤 일을 하고 계신지, 홈페이지를 통해 무엇을 보여주고 싶은지
+              간단한 상담을 통해 필요한 페이지와 기능부터 함께 정리합니다.
             </p>
 
             <div
@@ -844,9 +841,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 md:text-[24px]
               "
             >
-              필요한 것부터
-              <br />
-              하나씩 기획합니다.
+              필요한 만큼, 합리적으로.
             </h3>
 
             <p
@@ -863,8 +858,9 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 md:text-[15px]
               "
             >
-              필요한 기능과 페이지, 사용자 흐름과 디자인 방향을 정리해 막연한
-              생각을 구체적인 기획으로 바꿉니다.
+              무조건 많은 기능을 넣기보다 꼭 필요한 것부터 골라 제작합니다.
+              불필요한 비용은 줄이고 예산에 맞는 가장 효율적인 방법을
+              제안해드려요.
             </p>
 
             <div
@@ -938,9 +934,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 md:text-[24px]
               "
             >
-              그리고 실제로
-              <br />
-              작동하게 만듭니다.
+              처음부터 오픈까지 직접.
             </h3>
 
             <p
@@ -957,8 +951,8 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 md:text-[15px]
               "
             >
-              정리된 기획을 기반으로 디자인하고 개발해 실제 사람들이 사용할 수
-              있는 하나의 웹사이트와 서비스로 완성합니다.
+              상담부터 기획, 디자인, 개발, 수정 그리고 오픈까지 담당자가 바뀌지
+              않고 MADE BY YOUNG이 직접 함께합니다.
             </p>
           </div>
         </div>
@@ -1010,7 +1004,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
             <p
               className="
                 break-keep
-
+                text-left
                 text-[15px]
                 font-medium
 
@@ -1022,10 +1016,9 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 md:text-[16px]
               "
             >
-              &ldquo;아이디어는 있는데 어떻게 만들어야 할지
-              모르겠어요ㅠㅠ&rdquo;
-              <br className="hidden sm:block" />
-              바로 그 단계에서 MADE BY YOUNG과 함께 시작하면 됩니다.
+              &ldquo;홈페이지는 오픈이 끝이 아니라 시작이니까요. <br />
+              만드는 순간부터 운영하고 성장하는 과정까지, 오래 함께할 수 있는
+              파트너가 되겠습니다.&rdquo;
             </p>
           </div>
         </div>

@@ -2,26 +2,58 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight, Globe2 } from "lucide-react";
+import { FaInstagram, FaYoutube } from "react-icons/fa";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
 const navItems = [
   { name: "ABOUT", href: "#about" },
-  // { name: "WORK", href: "#works" },
-
   { name: "SERVICES", href: "#services" },
-
   { name: "PROCESS", href: "#process" },
   { name: "CONTACT", href: "#contact" },
 ];
 
+/* =========================================================
+   SOCIAL LINKS
+
+   ↓ 실제 계정 주소 생기면 href만 변경하면 됨
+========================================================= */
+
+const socialItems = [
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/",
+    icon: FaInstagram,
+  },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/",
+    icon: FaYoutube,
+  },
+  {
+    name: "Website",
+    href: "https://madebyyoung.com",
+    icon: Globe2,
+  },
+];
+
 export default function Header() {
   const { scrollY } = useScroll();
+
   const [isScrolled, setIsScrolled] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 40);
   });
+
+  /* =========================================================
+     SMOOTH SCROLL
+  ========================================================= */
 
   const handleScroll = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -54,31 +86,49 @@ export default function Header() {
         ease: [0.16, 1, 0.3, 1],
       }}
       className={`
-        fixed
-        left-0
+  fixed
+  left-0
+  z-50
+  w-full
+
+  border-b
+  border-black/[0.05]
+
+  transition-all
+  duration-500
+  ease-[cubic-bezier(0.16,1,0.3,1)]
+
+  ${
+    isScrolled
+      ? `
         top-0
-        z-50
-        w-full
-
-        transition-colors
-        duration-500
-
-        ${isScrolled ? "bg-[#111111]" : "bg-transparent"}
-      `}
+        bg-white/90
+        shadow-[0_8px_30px_rgba(0,0,0,0.035)]
+        backdrop-blur-xl
+      `
+      : `
+        top-[38px]
+        bg-white/70
+        backdrop-blur-md
+      `
+  }
+`}
     >
       <div
         className="
           mx-auto
           flex
+          h-[78px]
           w-full
           items-center
           justify-between
 
           px-[clamp(20px,4vw,72px)]
-          py-[clamp(18px,1.8vw,28px)]
         "
       >
-        {/* LOGO */}
+        {/* ==================================================
+            LOGO
+        ================================================== */}
 
         <Link
           href="/"
@@ -86,6 +136,7 @@ export default function Header() {
           className="
             group
             relative
+            z-10
             block
             shrink-0
           "
@@ -93,8 +144,8 @@ export default function Header() {
           <div
             className="
               relative
-              h-[clamp(30px,2.7vw,43px)]
-              w-[clamp(150px,13vw,220px)]
+              h-[36px]
+              w-[clamp(145px,12vw,205px)]
             "
           >
             <Image
@@ -103,64 +154,39 @@ export default function Header() {
               width={700}
               height={200}
               priority
-              className={`
+              className="
                 absolute
                 left-0
                 top-1/2
 
                 h-auto
                 w-full
+
                 -translate-y-1/2
 
                 object-contain
                 object-left
-
-                transition-all
-                duration-500
-
-                ${isScrolled ? "pointer-events-none opacity-0" : "opacity-100"}
-              `}
-            />
-
-            <Image
-              src="/images/header-logo-white.png"
-              alt=""
-              aria-hidden="true"
-              width={700}
-              height={200}
-              className={`
-                absolute
-                left-0
-                top-1/2
-
-                h-auto
-                w-full
-                -translate-y-1/2
-
-                object-contain
-                object-left
-
-                transition-all
-                duration-500
-
-                ${isScrolled ? "opacity-100" : "pointer-events-none opacity-0"}
-              `}
+              "
             />
           </div>
+
+          {/* logo hover underline */}
 
           <span
             className="
               absolute
-              -bottom-[7px]
+              -bottom-[8px]
               left-0
 
               h-[2px]
               w-0
 
+              rounded-full
               bg-[#DE1334]
 
               transition-all
               duration-500
+
               ease-[cubic-bezier(0.16,1,0.3,1)]
 
               group-hover:w-full
@@ -168,14 +194,21 @@ export default function Header() {
           />
         </Link>
 
-        {/* DESKTOP MENU */}
+        {/* ==================================================
+            DESKTOP NAVIGATION
+        ================================================== */}
 
         <nav
           aria-label="메인 메뉴"
           className="
+            absolute
+            left-1/2
+
             hidden
+            -translate-x-1/2
             items-center
-            gap-[clamp(28px,3.2vw,60px)]
+
+            gap-[clamp(24px,2.4vw,48px)]
 
             lg:flex
           "
@@ -190,33 +223,40 @@ export default function Header() {
                 relative
                 overflow-hidden
 
-                text-[clamp(17px,1.25vw,23px)]
-                font-semibold
-                tracking-[-0.025em]
+                py-2
+
+                text-[14px]
+                font-medium
+
+                tracking-[0.04em]
+
+                text-[#171717]
               "
             >
+              {/* DEFAULT */}
+
               <span
-                className={`
+                className="
                   block
 
-                  transition-all
+                  transition-transform
                   duration-500
 
                   ease-[cubic-bezier(0.16,1,0.3,1)]
 
-                  group-hover:-translate-y-[120%]
-
-                  ${isScrolled ? "text-white" : "text-[#111111]"}
-                `}
+                  group-hover:-translate-y-[150%]
+                "
               >
                 {item.name}
               </span>
+
+              {/* HOVER */}
 
               <span
                 className="
                   absolute
                   left-0
-                  top-[120%]
+                  top-[150%]
 
                   text-[#DE1334]
 
@@ -225,7 +265,7 @@ export default function Header() {
 
                   ease-[cubic-bezier(0.16,1,0.3,1)]
 
-                  group-hover:-translate-y-[120%]
+                  group-hover:-translate-y-[150%]
                 "
               >
                 {item.name}
@@ -234,26 +274,216 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* MOBILE */}
+        {/* ==================================================
+            DESKTOP RIGHT
+        ================================================== */}
 
-        <a
-          href="#contact"
-          onClick={(e) => handleScroll(e, "#contact")}
-          className={`
-            text-[12px]
-            font-semibold
+        <div
+          className="
+            hidden
+            items-center
+            gap-3
 
-            transition-colors
-            duration-500
+            lg:flex
+          "
+        >
+          {/* SOCIAL ICONS */}
+
+          <div
+            className="
+              flex
+              items-center
+              gap-1
+
+              rounded-full
+
+              border
+              border-black/[0.07]
+
+              bg-white/60
+
+              p-1
+
+              shadow-[0_4px_20px_rgba(0,0,0,0.025)]
+            "
+          >
+            {socialItems.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.name}
+                  title={item.name}
+                  className="
+                    group
+
+                    flex
+                    h-9
+                    w-9
+                    items-center
+                    justify-center
+
+                    rounded-full
+
+                    text-[#202020]
+
+                    transition-all
+                    duration-300
+
+                    hover:bg-[#DE1334]
+                    hover:text-white
+                  "
+                >
+                  <Icon
+                    size={16}
+                    className="
+                      transition-transform
+                      duration-300
+
+                      group-hover:scale-110
+                    "
+                  />
+                </a>
+              );
+            })}
+          </div>
+
+          {/* CONTACT BUTTON */}
+
+          <a
+            href="#contact"
+            onClick={(e) => handleScroll(e, "#contact")}
+            className="
+              group
+
+              flex
+              h-[42px]
+              items-center
+              justify-center
+              gap-2
+
+              rounded-full
+
+              bg-[#171717]
+
+              px-5
+
+              text-[13px]
+              font-medium
+
+              tracking-[0.025em]
+
+              text-white
+
+              transition-all
+              duration-300
+
+              hover:bg-[#DE1334]
+            "
+          >
+            <span>CONTACT</span>
+
+            <ArrowUpRight
+              size={15}
+              strokeWidth={1.8}
+              className="
+                transition-transform
+                duration-300
+
+                group-hover:-translate-y-[2px]
+                group-hover:translate-x-[2px]
+              "
+            />
+          </a>
+        </div>
+
+        {/* ==================================================
+            MOBILE RIGHT
+        ================================================== */}
+
+        <div
+          className="
+            flex
+            items-center
+            gap-2
 
             lg:hidden
-
-            ${isScrolled ? "text-white" : "text-[#111111]"}
-          `}
+          "
         >
-          CONTACT
-          <span className="ml-1 text-[#DE1334]">↗</span>
-        </a>
+          {/* INSTAGRAM */}
+
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="
+              flex
+              h-9
+              w-9
+              items-center
+              justify-center
+
+              rounded-full
+
+              border
+              border-black/[0.07]
+
+              bg-white/70
+
+              text-[#171717]
+
+              backdrop-blur-md
+
+              transition-all
+              duration-300
+
+              hover:bg-[#DE1334]
+              hover:text-white
+            "
+          >
+            <FaInstagram size={16} />
+          </a>
+
+          {/* CONTACT */}
+
+          <a
+            href="#contact"
+            onClick={(e) => handleScroll(e, "#contact")}
+            className="
+              flex
+              h-9
+              items-center
+              justify-center
+              gap-1.5
+
+              rounded-full
+
+              bg-[#171717]
+
+              px-4
+
+              text-[11px]
+              font-medium
+
+              tracking-[0.04em]
+
+              text-white
+
+              transition-colors
+              duration-300
+
+              hover:bg-[#DE1334]
+            "
+          >
+            CONTACT
+            <ArrowUpRight size={13} strokeWidth={1.8} />
+          </a>
+        </div>
       </div>
     </motion.header>
   );

@@ -36,6 +36,20 @@ const SERVICES = [
     ],
     image: "/images/services/starter.jpg",
   },
+  {
+    id: "cafe24",
+    tab: "카페24 쇼핑몰 제작",
+    title: "쇼핑몰 오픈, 처음부터 끝까지 함께합니다",
+    description:
+      "카페24 제작부터 PG 신청, 통신판매업, 배송 설정까지 쇼핑몰 오픈에 필요한 과정을 하나씩 안내해드립니다.",
+    highlight: "처음이라 몰라도 괜찮아요. 필요한 준비부터 오픈까지 함께합니다.",
+    points: [
+      "카페24 디자인 · 상품 구성",
+      "PG 결제 · 운영 필수 설정 안내",
+      "배송 · 교환 · 반품 · 오픈 세팅",
+    ],
+    image: "/images/services/cafe24.jpg",
+  },
 
   {
     id: "renewal",

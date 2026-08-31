@@ -2,53 +2,60 @@
 
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import {
-  BadgeCheck,
-  CircleDollarSign,
-  Headphones,
-  LayoutDashboard,
+  BriefcaseBusiness,
+  Building2,
+  ShoppingBag,
+  UserRound,
 } from "lucide-react";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+
+/* =========================================================
+   WEBSITE TYPES
+========================================================= */
 
 const POINTS = [
   {
     number: "01",
-    title: "거품을 뺀 합리적인 가격",
-    keyword: "합리적인 가격",
+    title: "브랜드 · 기업 홈페이지",
+    keyword: "CORPORATE & BRAND",
     description:
-      "불필요한 기능과 비용을 더하지 않습니다. 필요한 범위를 먼저 정리하고 그에 맞는 합리적인 비용으로 제작합니다.",
-    image: "/images/why/price.jpg",
-    icon: CircleDollarSign,
-    background: "#fff1f3",
-  },
-  {
-    number: "02",
-    title: "처음부터 끝까지 직접",
-    keyword: "1:1 직접 제작",
-    description:
-      "상담부터 기획, 디자인, 개발, 오픈까지 담당자가 바뀌지 않습니다. 모든 과정을 직접 확인하고 책임집니다.",
-    image: "/images/why/direct.jpg",
-    icon: BadgeCheck,
+      "회사와 브랜드의 강점을 명확하게 보여주는 홈페이지를 제작합니다. 소개부터 서비스, 포트폴리오, 문의까지 목적에 맞게 구성합니다.",
+    image: "/images/why/company.jpg",
+    icon: Building2,
     background: "#f1f1f1",
   },
+
+  {
+    number: "02",
+    title: "카페24 쇼핑몰",
+    keyword: "CAFE24 SHOP",
+    description:
+      "브랜드에 맞는 쇼핑몰 디자인부터 PG 신청, 배송 · 운영 설정까지 오픈에 필요한 과정을 함께 안내합니다.",
+    image: "/images/why/shop.jpg",
+    icon: ShoppingBag,
+    background: "#fff1f3",
+  },
+
   {
     number: "03",
-    title: "꼼꼼한 피드백과 수정",
-    keyword: "꼼꼼한 수정",
+    title: "병원 · 전문 서비스 홈페이지",
+    keyword: "BUSINESS WEBSITE",
     description:
-      "작은 부분도 함께 확인하고 조율합니다. 만족할 수 있는 결과에 가까워질 때까지 꼼꼼하게 피드백을 반영합니다.",
-    image: "/images/why/feedback.jpg",
-    icon: Headphones,
-    background: "#fff5f6",
+      "병원, 법률, 컨설팅 등 신뢰가 중요한 업종에 맞춰 정보 전달과 문의 전환을 고려한 홈페이지를 제작합니다.",
+    image: "/images/why/business.jpg",
+    icon: BriefcaseBusiness,
+    background: "#f3f3f3",
   },
+
   {
     number: "04",
-    title: "누구나 쉬운 관리자",
-    keyword: "쉬운 운영",
+    title: "포트폴리오 · 개인 브랜드",
+    keyword: "PERSONAL BRAND",
     description:
-      "상품, 게시글, 이미지 등 필요한 콘텐츠를 개발자 없이도 쉽게 수정하고 관리할 수 있도록 제작합니다.",
-    image: "/images/why/admin.jpg",
-    icon: LayoutDashboard,
-    background: "#f3f3f3",
+      "프리랜서, 크리에이터, 작가 등 나만의 작업과 이야기를 효과적으로 보여줄 수 있는 웹사이트를 제작합니다.",
+    image: "/images/why/portfolio.jpg",
+    icon: UserRound,
+    background: "#fff5f6",
   },
 ];
 
@@ -59,6 +66,10 @@ type FeatureItemProps = {
   index: number;
   setActiveIndex: Dispatch<SetStateAction<number>>;
 };
+
+/* =========================================================
+   FEATURE ITEM
+========================================================= */
 
 function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
   const itemRef = useRef<HTMLDivElement>(null);
@@ -72,11 +83,7 @@ function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
     offset: ["start end", "end start"],
   });
 
-  /*
-   * 화면 아래에서 들어올 때 작게
-   * 가운데에서 가장 크게
-   * 위로 빠질 때 다시 살짝 작게
-   */
+  /* 이미지 스크롤 효과 */
   const imageScale = useTransform(
     scrollYProgress,
     [0, 0.25, 0.5, 0.75, 1],
@@ -104,8 +111,10 @@ function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
       ref={itemRef}
       className="
         relative
+
         border-b
         border-black/[0.08]
+
         py-16
 
         last:border-b-0
@@ -127,9 +136,9 @@ function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
           lg:gap-14
         "
       >
-        {/* ==========================================
+        {/* ==================================================
             IMAGE
-        ========================================== */}
+        ================================================== */}
 
         <motion.div
           style={{
@@ -139,9 +148,12 @@ function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
           }}
           className="
             relative
+
             h-[330px]
             w-full
+
             overflow-hidden
+
             rounded-[30px]
 
             sm:h-[390px]
@@ -150,7 +162,8 @@ function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
             lg:rounded-[36px]
           "
         >
-          {/* fallback 배경 */}
+          {/* fallback background */}
+
           <div
             className="absolute inset-0"
             style={{
@@ -158,34 +171,86 @@ function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
             }}
           />
 
-          {/* 실제 사진 */}
+          {/* image */}
+
           <div
             className="
               absolute
               inset-0
+
               bg-cover
               bg-center
               bg-no-repeat
+
+              transition-transform
+              duration-700
             "
             style={{
               backgroundImage: `url(${point.image})`,
             }}
           />
 
-          {/* 사진이 없을 때도 디자인이 보이게 */}
+          {/* overlay */}
+
           <div
             className="
               pointer-events-none
               absolute
               inset-0
+
               bg-gradient-to-t
-              from-black/[0.12]
+              from-black/[0.20]
               via-transparent
               to-transparent
             "
           />
 
-          {/* 번호 */}
+          {/* CATEGORY BADGE */}
+
+          <div
+            className="
+              absolute
+              left-5
+              top-5
+
+              flex
+              items-center
+              gap-2
+
+              rounded-full
+
+              border
+              border-white/20
+
+              bg-black/20
+
+              px-3
+              py-2
+
+              text-white
+
+              backdrop-blur-md
+
+              lg:left-6
+              lg:top-6
+            "
+          >
+            <Icon size={14} strokeWidth={1.9} />
+
+            <span
+              className="
+                text-[10px]
+                font-semibold
+                tracking-[0.07em]
+
+                sm:text-[11px]
+              "
+            >
+              {point.keyword}
+            </span>
+          </div>
+
+          {/* NUMBER */}
 
           <div
             className="
@@ -199,6 +264,7 @@ function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
                 text-[54px]
                 font-black
                 tracking-[-0.08em]
+
                 text-white
 
                 drop-shadow-[0_3px_12px_rgba(0,0,0,0.14)]
@@ -211,9 +277,9 @@ function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
           </div>
         </motion.div>
 
-        {/* ==========================================
+        {/* ==================================================
             TEXT
-        ========================================== */}
+        ================================================== */}
 
         <motion.div
           initial={{
@@ -238,24 +304,54 @@ function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
         >
           {/* KEYWORD */}
 
-          <p
+          <div
             className="
-              mb-3
+              mb-4
 
-              text-[13px]
-              font-bold
-
-              text-[#de1334]
+              flex
+              items-center
+              gap-2
             "
           >
-            {point.keyword}
-          </p>
+            <div
+              className="
+                flex
+                h-8
+                w-8
+                items-center
+                justify-center
+
+                rounded-full
+
+                bg-[#fff1f3]
+
+                text-[#de1334]
+              "
+            >
+              <Icon size={15} strokeWidth={1.9} />
+            </div>
+
+            <p
+              className="
+                text-[12px]
+                font-bold
+
+                tracking-[0.05em]
+
+                text-[#de1334]
+
+                sm:text-[13px]
+              "
+            >
+              {point.keyword}
+            </p>
+          </div>
 
           {/* TITLE */}
 
           <h3
             className="
-              max-w-[450px]
+              max-w-[470px]
 
               break-keep
 
@@ -279,7 +375,7 @@ function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
           <div
             className="
               mt-6
-              max-w-[480px]
+              max-w-[500px]
 
               rounded-[20px]
 
@@ -308,6 +404,7 @@ function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
                 text-[#555]
 
                 sm:text-[15px]
+
                 lg:text-[16px]
               "
             >
@@ -320,6 +417,10 @@ function FeatureItem({ point, index, setActiveIndex }: FeatureItemProps) {
   );
 }
 
+/* =========================================================
+   SECTION
+========================================================= */
+
 export default function ProcessSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -327,7 +428,9 @@ export default function ProcessSection() {
     <section
       className="
         relative
+
         bg-[#f7f7f7]
+
         px-5
         py-24
 
@@ -342,9 +445,9 @@ export default function ProcessSection() {
           max-w-[1180px]
         "
       >
-        {/* ==========================================
+        {/* ==================================================
             HEADER
-        ========================================== */}
+        ================================================== */}
 
         <div
           className="
@@ -361,11 +464,12 @@ export default function ProcessSection() {
 
               text-[13px]
               font-bold
+              tracking-[0.07em]
 
               text-[#de1334]
             "
           >
-            WHY MADE BY YOUNG
+            WHAT WE CREATE
           </p>
 
           <h2
@@ -383,16 +487,17 @@ export default function ProcessSection() {
               md:text-[52px]
             "
           >
-            필요한 것은 더하고,
+            어떤 홈페이지가 필요하세요?
             <br />
-            <span className="text-[#de1334]">불필요한 것은 덜었습니다.</span>
+            <span className="text-[#de1334]">목적에 맞게 만들어드립니다.</span>
           </h2>
 
           <p
             className="
               mx-auto
               mt-5
-              max-w-[560px]
+
+              max-w-[610px]
 
               break-keep
 
@@ -404,13 +509,15 @@ export default function ProcessSection() {
               md:text-[16px]
             "
           >
-            홈페이지를 만드는 과정부터 실제 운영하는 순간까지 생각합니다.
+            기업부터 쇼핑몰, 전문 서비스, 개인 브랜드까지
+            <br className="hidden sm:block" />
+            업종과 목적에 맞는 홈페이지를 제작합니다.
           </p>
         </div>
 
-        {/* ==========================================
+        {/* ==================================================
             MAIN
-        ========================================== */}
+        ================================================== */}
 
         <div
           className="
@@ -421,31 +528,25 @@ export default function ProcessSection() {
             lg:gap-12
           "
         >
-          {/* ==========================================
-              LEFT NUMBERS - DESKTOP
-          ========================================== */}
+          {/* ==================================================
+              LEFT PROGRESS
+          ================================================== */}
 
-          <aside
-            className="
-              hidden
-
-              lg:block
-            "
-          >
+          <aside className="hidden lg:block">
             <div
               className="
                 sticky
                 top-[150px]
               "
             >
-              {/* LINE */}
-
               <div
                 className="
                   relative
                   ml-[27px]
                 "
               >
+                {/* BASE LINE */}
+
                 <div
                   className="
                     absolute
@@ -463,7 +564,7 @@ export default function ProcessSection() {
 
                 <motion.div
                   animate={{
-                    height: `${(activeIndex / 3) * 100}%`,
+                    height: `${(activeIndex / (POINTS.length - 1)) * 100}%`,
                   }}
                   transition={{
                     duration: 1.1,
@@ -480,6 +581,8 @@ export default function ProcessSection() {
                   "
                 />
 
+                {/* NUMBERS */}
+
                 <div className="relative space-y-8">
                   {POINTS.map((point, index) => {
                     const active = activeIndex === index;
@@ -490,6 +593,7 @@ export default function ProcessSection() {
                         key={point.number}
                         className="
                           relative
+
                           flex
                           h-[52px]
                           items-center
@@ -553,9 +657,9 @@ export default function ProcessSection() {
             </div>
           </aside>
 
-          {/* ==========================================
-              MOBILE NUMBERS
-          ========================================== */}
+          {/* ==================================================
+              MOBILE PROGRESS
+          ================================================== */}
 
           <div
             className="
@@ -589,6 +693,7 @@ export default function ProcessSection() {
                 key={point.number}
                 animate={{
                   color: activeIndex === index ? "#de1334" : "#b0b0b0",
+
                   scale: activeIndex === index ? 1.15 : 1,
                 }}
                 className="
@@ -601,9 +706,9 @@ export default function ProcessSection() {
             ))}
           </div>
 
-          {/* ==========================================
-              RIGHT CONTENT
-          ========================================== */}
+          {/* ==================================================
+              CONTENT
+          ================================================== */}
 
           <div>
             {POINTS.map((point, index) => (

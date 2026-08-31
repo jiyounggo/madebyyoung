@@ -122,7 +122,7 @@ export default function SeoBanner() {
                   text-[15px]
                   leading-[1.7]
 
-                  text-white/60
+                  text-white/80
 
                   md:text-[18px]
                 "
