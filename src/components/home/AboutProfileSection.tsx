@@ -3,11 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/navigation";
+import PortfolioShowcase from "./PortfolioShowcase";
 
 /* =========================================================
    STATS
@@ -33,48 +29,6 @@ const STATS = [
     number: "AI & WEB",
     title: "AUTOMATION",
     description: "AI 활용 · 업무 자동화 구축",
-  },
-];
-
-/* =========================================================
-   PORTFOLIO
-========================================================= */
-
-const PORTFOLIO = [
-  {
-    title: "홍인글로벌",
-    category: "CORPORATE WEBSITE",
-    image: "/images/profile/work-01.jpg",
-  },
-  {
-    title: "브랜드 홈페이지",
-    category: "BRAND WEBSITE",
-    image: "/images/profile/work-02.jpg",
-  },
-  {
-    title: "카페24 쇼핑몰",
-    category: "CAFE24 SHOP",
-    image: "/images/profile/work-03.jpg",
-  },
-  {
-    title: "병원 홈페이지",
-    category: "CLINIC WEBSITE",
-    image: "/images/profile/work-04.jpg",
-  },
-  {
-    title: "쇼핑몰 프로젝트",
-    category: "E-COMMERCE",
-    image: "/images/profile/work-05.jpg",
-  },
-  {
-    title: "기업 홈페이지",
-    category: "CORPORATE WEBSITE",
-    image: "/images/profile/work-06.jpg",
-  },
-  {
-    title: "개인 브랜드",
-    category: "PERSONAL BRAND",
-    image: "/images/profile/work-07.jpg",
   },
 ];
 
@@ -127,6 +81,7 @@ export default function AboutProfileSection() {
           />
 
           {/* 오른쪽 흰 배경 연결 */}
+
           <div
             className="
               pointer-events-none
@@ -455,6 +410,8 @@ export default function AboutProfileSection() {
                 max-w-[280px]
               "
             >
+              {/* LABEL */}
+
               <div className="mb-6 flex items-center gap-3">
                 <span className="h-[2px] w-[16px] bg-[#de1334]" />
 
@@ -469,6 +426,8 @@ export default function AboutProfileSection() {
                 </span>
               </div>
 
+              {/* NAME */}
+
               <h2
                 className="
                   text-[44px]
@@ -482,6 +441,8 @@ export default function AboutProfileSection() {
                 <br />
                 JI YOUNG
               </h2>
+
+              {/* JOB */}
 
               <p
                 className="
@@ -498,6 +459,8 @@ export default function AboutProfileSection() {
                 FRONT-END DEVELOPER
               </p>
 
+              {/* DESCRIPTION */}
+
               <p
                 className="
                   mt-5
@@ -513,6 +476,8 @@ export default function AboutProfileSection() {
                 <br />
                 오래 사용할 수 있는 웹을 만듭니다.
               </p>
+
+              {/* SIGNATURE */}
 
               <div
                 className="
@@ -533,7 +498,9 @@ export default function AboutProfileSection() {
             </motion.div>
           </div>
 
-          {/* MOBILE STATS */}
+          {/* =================================================
+              MOBILE STATS
+          ================================================= */}
 
           <div
             className="
@@ -543,6 +510,8 @@ export default function AboutProfileSection() {
               sm:px-10
             "
           >
+            {/* LABEL */}
+
             <div className="mb-6 flex items-center gap-3">
               <span className="h-[2px] w-[16px] bg-[#de1334]" />
 
@@ -556,6 +525,8 @@ export default function AboutProfileSection() {
                 KEY NUMBERS
               </span>
             </div>
+
+            {/* GRID */}
 
             <div
               className="
@@ -622,357 +593,10 @@ export default function AboutProfileSection() {
       </div>
 
       {/* =====================================================
-          WORKS
+          PORTFOLIO
       ===================================================== */}
 
-      <div
-        className="
-          bg-white
-          px-6
-          py-16
-
-          sm:px-10
-          sm:py-20
-
-          lg:px-[clamp(32px,4vw,64px)]
-          lg:py-20
-        "
-      >
-        <div
-          className="
-            mx-auto
-            grid
-            w-full
-            max-w-[1440px]
-
-            grid-cols-1
-            gap-10
-
-            lg:grid-cols-[260px_minmax(0,1fr)]
-            lg:gap-10
-          "
-        >
-          {/* LEFT */}
-
-          <div>
-            <div className="mb-6 flex items-center gap-3">
-              <span className="h-[2px] w-[18px] bg-[#de1334]" />
-
-              <span
-                className="
-                  text-[11px]
-                  font-bold
-                  tracking-[0.22em]
-                "
-              >
-                WORKS
-              </span>
-            </div>
-
-            <h3
-              className="
-                max-w-[300px]
-                break-keep
-
-                text-[36px]
-                font-semibold
-
-                leading-[1.16]
-                tracking-[-0.06em]
-
-                sm:text-[40px]
-                lg:text-[42px]
-              "
-            >
-              MADE BY YOUNG과
-              <br />
-              함께한 <span className="text-[#de1334]">웹의 순간들.</span>
-            </h3>
-
-            <span
-              className="
-                mt-7
-                block
-                h-[2px]
-                w-[20px]
-                bg-[#de1334]
-              "
-            />
-
-            <p
-              className="
-                mt-6
-                max-w-[260px]
-                break-keep
-
-                text-[14px]
-                font-medium
-                leading-[1.8]
-
-                text-[#666]
-              "
-            >
-              서로 다른 브랜드의 이야기를 각자에게 어울리는 화면으로
-              만들었습니다.
-            </p>
-
-            {/* NAVIGATION */}
-
-            <div className="mt-8 flex items-center gap-2">
-              <button
-                type="button"
-                aria-label="이전 포트폴리오"
-                className="
-                  portfolio-prev
-
-                  flex
-                  h-11
-                  w-11
-
-                  items-center
-                  justify-center
-
-                  rounded-full
-
-                  border
-                  border-black/[0.1]
-
-                  bg-white
-
-                  text-[18px]
-
-                  transition-all
-                  duration-300
-
-                  hover:border-[#de1334]
-                  hover:bg-[#de1334]
-                  hover:text-white
-                "
-              >
-                ←
-              </button>
-
-              <button
-                type="button"
-                aria-label="다음 포트폴리오"
-                className="
-                  portfolio-next
-
-                  flex
-                  h-11
-                  w-11
-
-                  items-center
-                  justify-center
-
-                  rounded-full
-
-                  border
-                  border-black/[0.1]
-
-                  bg-white
-
-                  text-[18px]
-
-                  transition-all
-                  duration-300
-
-                  hover:border-[#de1334]
-                  hover:bg-[#de1334]
-                  hover:text-white
-                "
-              >
-                →
-              </button>
-            </div>
-          </div>
-
-          {/* =================================================
-              SWIPER
-          ================================================= */}
-
-          <div className="min-w-0 overflow-hidden">
-            <Swiper
-              modules={[Navigation]}
-              navigation={{
-                prevEl: ".portfolio-prev",
-                nextEl: ".portfolio-next",
-              }}
-              grabCursor
-              spaceBetween={18}
-              slidesPerView={1.08}
-              breakpoints={{
-                480: {
-                  slidesPerView: 1.25,
-                  spaceBetween: 20,
-                },
-
-                640: {
-                  slidesPerView: 1.65,
-                  spaceBetween: 22,
-                },
-
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 22,
-                },
-
-                1024: {
-                  slidesPerView: 3,
-                  spaceBetween: 20,
-                },
-
-                1280: {
-                  slidesPerView: 4,
-                  spaceBetween: 18,
-                },
-              }}
-              className="w-full"
-            >
-              {PORTFOLIO.map((work, index) => (
-                <SwiperSlide key={`${work.title}-${index}`}>
-                  <motion.div
-                    initial={{
-                      opacity: 0,
-                      y: 18,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    viewport={{
-                      once: true,
-                      amount: 0.25,
-                    }}
-                    transition={{
-                      duration: 0.55,
-                      delay: Math.min(index * 0.04, 0.2),
-                    }}
-                    className="group select-none"
-                  >
-                    {/* IMAGE */}
-
-                    <div
-                      className="
-                        relative
-                        aspect-[4/3]
-
-                        overflow-hidden
-                        rounded-[15px]
-
-                        bg-[#f1f1f1]
-                      "
-                    >
-                      <Image
-                        src={work.image}
-                        alt={work.title}
-                        fill
-                        sizes="
-                          (max-width: 640px) 90vw,
-                          (max-width: 1024px) 48vw,
-                          25vw
-                        "
-                        className="
-                          object-cover
-
-                          transition-transform
-                          duration-700
-
-                          ease-[cubic-bezier(0.16,1,0.3,1)]
-
-                          group-hover:scale-[1.035]
-                        "
-                      />
-
-                      <div
-                        className="
-                          pointer-events-none
-                          absolute
-                          inset-0
-
-                          bg-black/0
-
-                          transition-colors
-                          duration-500
-
-                          group-hover:bg-black/[0.04]
-                        "
-                      />
-
-                      {/* NUMBER */}
-
-                      <div
-                        className="
-                          absolute
-                          right-4
-                          top-4
-
-                          flex
-                          h-9
-                          min-w-9
-
-                          items-center
-                          justify-center
-
-                          rounded-full
-
-                          border
-                          border-white/40
-
-                          bg-white/85
-
-                          px-3
-
-                          text-[11px]
-                          font-bold
-
-                          backdrop-blur-md
-                        "
-                      >
-                        {String(index + 1).padStart(2, "0")}
-                      </div>
-                    </div>
-
-                    {/* TEXT */}
-
-                    <div className="pb-2 pt-4">
-                      <h4
-                        className="
-                          break-keep
-
-                          text-[17px]
-                          font-bold
-
-                          tracking-[-0.035em]
-
-                          sm:text-[18px]
-                        "
-                      >
-                        {work.title}
-                      </h4>
-
-                      <p
-                        className="
-                          mt-2
-
-                          text-[10px]
-                          font-bold
-
-                          tracking-[0.09em]
-
-                          text-[#999]
-                        "
-                      >
-                        {work.category}
-                      </p>
-                    </div>
-                  </motion.div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </div>
-      </div>
+      <PortfolioShowcase />
     </section>
   );
 }

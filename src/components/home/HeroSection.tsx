@@ -4,19 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 /* ==========================================
-   INTRO WORDS
-========================================== */
-
-const introWords = [
-  "HOMEPAGE",
-  "DESIGN",
-  "DEVELOPMENT",
-  "SEO",
-  "AI",
-  "AUTOMATION",
-];
-
-/* ==========================================
    SLIDES
 ========================================== */
 
@@ -102,14 +89,6 @@ const searchResults = [
 
 export default function HeroSection() {
   /* ==========================================
-     INTRO
-  ========================================== */
-
-  const [wordIndex, setWordIndex] = useState(0);
-  const [typedText, setTypedText] = useState("");
-  const [introFinished, setIntroFinished] = useState(false);
-
-  /* ==========================================
      SLIDER
   ========================================== */
 
@@ -120,63 +99,11 @@ export default function HeroSection() {
   const slide = slides[activeSlide];
 
   /* ==========================================
-     INTRO TYPING
-  ========================================== */
-
-  useEffect(() => {
-    if (introFinished) return;
-
-    const currentWord = introWords[wordIndex];
-
-    let charIndex = 0;
-
-    setTypedText("");
-
-    let nextTimer: ReturnType<typeof setTimeout> | null = null;
-
-    let finishTimer: ReturnType<typeof setTimeout> | null = null;
-
-    const typingTimer = setInterval(() => {
-      charIndex += 1;
-
-      setTypedText(currentWord.slice(0, charIndex));
-
-      if (charIndex >= currentWord.length) {
-        clearInterval(typingTimer);
-
-        nextTimer = setTimeout(() => {
-          if (wordIndex === introWords.length - 1) {
-            finishTimer = setTimeout(() => {
-              setIntroFinished(true);
-            }, 350);
-
-            return;
-          }
-
-          setWordIndex((prev) => prev + 1);
-        }, 140);
-      }
-    }, 55);
-
-    return () => {
-      clearInterval(typingTimer);
-
-      if (nextTimer) {
-        clearTimeout(nextTimer);
-      }
-
-      if (finishTimer) {
-        clearTimeout(finishTimer);
-      }
-    };
-  }, [wordIndex, introFinished]);
-
-  /* ==========================================
      AUTOPLAY
   ========================================== */
 
   useEffect(() => {
-    if (!introFinished || !isPlaying) {
+    if (!isPlaying) {
       return;
     }
 
@@ -187,7 +114,7 @@ export default function HeroSection() {
     return () => {
       clearInterval(timer);
     };
-  }, [introFinished, isPlaying]);
+  }, [isPlaying]);
 
   return (
     <section
@@ -197,214 +124,6 @@ export default function HeroSection() {
         overflow-hidden
       "
     >
-      {/* ==================================================
-          INTRO
-      ================================================== */}
-
-      <AnimatePresence>
-        {!introFinished && (
-          <motion.div
-            key="intro"
-            initial={{
-              y: 0,
-            }}
-            exit={{
-              y: "-100%",
-            }}
-            transition={{
-              duration: 1.05,
-              ease: [0.76, 0, 0.24, 1],
-            }}
-            className="
-              fixed
-              inset-0
-              z-[999]
-              flex
-              h-screen
-              w-full
-              items-center
-              justify-center
-              overflow-hidden
-              bg-black
-              text-white
-            "
-          >
-            {/* TOP LEFT */}
-
-            <motion.p
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 0.45,
-              }}
-              transition={{
-                delay: 0.2,
-              }}
-              className="
-                absolute
-                left-6
-                top-6
-
-                text-[9px]
-                font-medium
-
-                tracking-[0.22em]
-
-                md:left-10
-                md:top-8
-                md:text-[10px]
-              "
-            >
-              MADE BY YOUNG
-            </motion.p>
-
-            {/* TOP RIGHT */}
-
-            <motion.p
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 0.3,
-              }}
-              transition={{
-                delay: 0.3,
-              }}
-              className="
-                absolute
-                right-6
-                top-6
-
-                text-[9px]
-
-                tracking-[0.2em]
-
-                md:right-10
-                md:top-8
-                md:text-[10px]
-              "
-            >
-              DIGITAL STUDIO
-            </motion.p>
-
-            {/* TYPING */}
-
-            <div
-              className="
-                flex
-                min-h-[180px]
-                items-center
-                justify-center
-                px-4
-              "
-            >
-              <div
-                className="
-                  flex
-                  items-center
-                "
-              >
-                <span
-                  className="
-                    whitespace-nowrap
-
-                    text-[clamp(46px,10vw,175px)]
-
-                    font-semibold
-
-                    leading-none
-
-                    tracking-[-0.075em]
-                  "
-                >
-                  {typedText}
-                </span>
-
-                {/* RED CURSOR */}
-
-                <motion.span
-                  animate={{
-                    opacity: [1, 1, 0, 0],
-                  }}
-                  transition={{
-                    duration: 0.7,
-                    repeat: Infinity,
-                  }}
-                  className="
-                    ml-2
-                    block
-
-                    h-[clamp(45px,9vw,145px)]
-
-                    w-[4px]
-
-                    bg-[#DE1334]
-
-                    md:w-[6px]
-                  "
-                />
-              </div>
-            </div>
-
-            {/* INTRO PROGRESS */}
-
-            <div
-              className="
-                absolute
-                bottom-8
-                left-6
-
-                flex
-                items-center
-                gap-3
-
-                md:left-10
-              "
-            >
-              <span
-                className="
-                  text-[9px]
-                  text-white/40
-                "
-              >
-                0{wordIndex + 1}
-              </span>
-
-              <div
-                className="
-                  h-px
-                  w-[75px]
-
-                  overflow-hidden
-
-                  bg-white/15
-                "
-              >
-                <motion.div
-                  animate={{
-                    width: `${((wordIndex + 1) / introWords.length) * 100}%`,
-                  }}
-                  className="
-                    h-full
-                    bg-[#DE1334]
-                  "
-                />
-              </div>
-
-              <span
-                className="
-                  text-[9px]
-                  text-white/25
-                "
-              >
-                0{introWords.length}
-              </span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* ==================================================
           HERO SLIDER
       ================================================== */}
