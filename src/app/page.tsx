@@ -9,6 +9,7 @@ import SeoBanner from "@/components/home/SeoBanner";
 import AboutProfileSection from "@/components/home/AboutProfileSection";
 import ContactSection from "@/components/home/ContactSection";
 import TopBanner from "@/components/layout/TopBanner";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "MADE BY YOUNG | 맞춤형 홈페이지 제작",
@@ -63,6 +64,7 @@ export default function HomePage() {
           <ContactSection />
         </section>
       </main>
+      <Footer />
     </>
   );
 }

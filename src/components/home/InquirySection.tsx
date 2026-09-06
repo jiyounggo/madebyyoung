@@ -143,7 +143,7 @@ export default function InquirySection() {
                 tracking-[-0.055em]
 
                 text-white
-
+                font-gmarket
                 sm:text-[35px]
                 md:text-[38px]
               "
@@ -198,8 +198,8 @@ export default function InquirySection() {
                 className="
                   mt-2
                   text-[14px]
-                  font-medium
-                  text-white/35
+                  font-light
+                  text-white
                 "
               >
                 하나의 프로젝트에 더 집중하기 위해 제한적으로 진행합니다.

@@ -145,24 +145,11 @@ export default function AboutProfileSection() {
             >
               {/* LABEL */}
 
-              <div className="mb-7 flex items-center gap-3">
-                <span className="h-[2px] w-[16px] bg-[#de1334]" />
-
-                <span
-                  className="
-                    text-[9px]
-                    font-bold
-                    tracking-[0.2em]
-                  "
-                >
-                  ABOUT ME
-                </span>
-              </div>
-
               {/* NAME */}
 
               <h2
                 className="
+                   font-gmarket
                   text-[52px]
                   font-semibold
                   leading-[0.96]
@@ -181,6 +168,7 @@ export default function AboutProfileSection() {
               <p
                 className="
                   mt-6
+                     font-gmarket
                   text-[12px]
                   font-bold
                   leading-[1.55]
@@ -257,20 +245,6 @@ export default function AboutProfileSection() {
             <div className="w-full">
               {/* LABEL */}
 
-              <div className="mb-7 flex items-center gap-3">
-                <span className="h-[2px] w-[16px] bg-[#de1334]" />
-
-                <span
-                  className="
-                    text-[9px]
-                    font-bold
-                    tracking-[0.2em]
-                  "
-                >
-                  KEY NUMBERS
-                </span>
-              </div>
-
               {/* GRID */}
 
               <div
@@ -332,6 +306,7 @@ export default function AboutProfileSection() {
 
                     <p
                       className="
+                        font-gmarket
                         mt-4
                         text-[11px]
                         font-bold
@@ -410,22 +385,6 @@ export default function AboutProfileSection() {
                 max-w-[280px]
               "
             >
-              {/* LABEL */}
-
-              <div className="mb-6 flex items-center gap-3">
-                <span className="h-[2px] w-[16px] bg-[#de1334]" />
-
-                <span
-                  className="
-                    text-[9px]
-                    font-bold
-                    tracking-[0.2em]
-                  "
-                >
-                  ABOUT ME
-                </span>
-              </div>
-
               {/* NAME */}
 
               <h2

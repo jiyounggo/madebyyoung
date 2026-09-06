@@ -50,7 +50,11 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
             TITLE
         ================================================== */}
 
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 36 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.45 }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           className="
             mx-auto
             max-w-[900px]
@@ -67,7 +71,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
               tracking-[-0.055em]
 
               text-[#171717]
-
+                font-gmarket
               sm:text-[48px]
               md:text-[60px]
             "
@@ -76,13 +80,17 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
             <br />
             <span className="text-[#de1334]">실제 웹으로.</span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* ==================================================
             CONVERSATION SCENE
         ================================================== */}
 
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 44, scale: 0.985 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="
             relative
 
@@ -150,7 +158,11 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
               CUSTOMER 01
           ================================= */}
 
-          <div
+          <motion.div
+            initial={{ opacity: 0, x: -52, y: 18, scale: 0.96 }}
+            whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.55 }}
+            transition={{ duration: 0.68, delay: 0, ease: [0.16, 1, 0.3, 1] }}
             className="
               relative
               z-10
@@ -259,13 +271,21 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 "
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* ================================
               YOUNG 01
           ================================= */}
 
-          <div
+          <motion.div
+            initial={{ opacity: 0, x: 52, y: 18, scale: 0.96 }}
+            whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.55 }}
+            transition={{
+              duration: 0.68,
+              delay: 0.06,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="
               relative
               z-10
@@ -378,13 +398,17 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 className="object-cover"
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* ================================
               CUSTOMER 02
           ================================= */}
 
-          <div
+          <motion.div
+            initial={{ opacity: 0, x: -52, y: 18, scale: 0.96 }}
+            whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.55 }}
+            transition={{ duration: 0.68, delay: 0, ease: [0.16, 1, 0.3, 1] }}
             className="
               relative
               z-10
@@ -495,13 +519,21 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 "
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* ================================
               YOUNG 02
           ================================= */}
 
-          <div
+          <motion.div
+            initial={{ opacity: 0, x: 52, y: 18, scale: 0.96 }}
+            whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.55 }}
+            transition={{
+              duration: 0.68,
+              delay: 0.06,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="
               relative
               z-10
@@ -625,14 +657,18 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 className="object-cover"
               />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* ==================================================
             PROCESS TITLE
         ================================================== */}
 
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           className="
             mx-auto
             mt-12
@@ -674,7 +710,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
               <ArrowRight size={18} />
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* ==================================================
             PROCESS BOARD
@@ -707,7 +743,11 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
               01 IDEA CHECK
           ========================================== */}
 
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 42, scale: 0.97 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.68, delay: 0, ease: [0.16, 1, 0.3, 1] }}
             className="
               relative
 
@@ -791,13 +831,21 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 md:w-px
               "
             />
-          </div>
+          </motion.div>
 
           {/* ==========================================
               02 PLANNING
           ========================================== */}
 
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 42, scale: 0.97 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{
+              duration: 0.68,
+              delay: 0.12,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="
               relative
 
@@ -882,13 +930,21 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
                 md:w-px
               "
             />
-          </div>
+          </motion.div>
 
           {/* ==========================================
               03 BUILD
           ========================================== */}
 
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 42, scale: 0.97 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{
+              duration: 0.68,
+              delay: 0.24,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="
               relative
 
@@ -954,14 +1010,18 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
               상담부터 기획, 디자인, 개발, 수정 그리고 오픈까지 담당자가 바뀌지
               않고 MADE BY YOUNG이 직접 함께합니다.
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* ==================================================
             BOTTOM MESSAGE
         ================================================== */}
 
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 34, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="
             mx-auto
             mt-8
@@ -1021,7 +1081,7 @@ export default function IdeaSection({ progress }: IdeaSectionProps) {
               파트너가 되겠습니다.&rdquo;
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

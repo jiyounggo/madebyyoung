@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -31,12 +32,12 @@ const PORTFOLIO = [
   {
     title: "병원 홈페이지",
     category: "CLINIC WEBSITE",
-    image: "/images/profile/work-04.jpg",
+    image: "/images/profile/work-05.jpg",
   },
   {
     title: "쇼핑몰 프로젝트",
     category: "E-COMMERCE",
-    image: "/images/profile/work-05.jpg",
+    image: "/images/profile/work-04.jpg",
   },
   {
     title: "기업 홈페이지",
@@ -83,6 +84,16 @@ const PORTFOLIO = [
     category: "WEB DEVELOPMENT",
     image: "/images/profile/work-14.jpg",
   },
+  {
+    title: "웹 프로젝트",
+    category: "WEB DEVELOPMENT",
+    image: "/images/profile/work-15.jpg",
+  },
+  {
+    title: "웹 프로젝트",
+    category: "WEB DEVELOPMENT",
+    image: "/images/profile/work-09.jpg",
+  },
 ];
 
 /* =========================================================
@@ -99,27 +110,27 @@ const PORTFOLIO_GROUPS = Array.from(
 
 /* =========================================================
    CARD HEIGHT
-   레퍼런스처럼 각 컬럼마다 높이를 조금씩 다르게
+   기존 디자인 그대로
 ========================================================= */
 
 const TOP_HEIGHTS = [
-  "h-[270px] lg:h-[300px]",
-  "h-[330px] lg:h-[380px]",
-  "h-[270px] lg:h-[300px]",
-  "h-[350px] lg:h-[390px]",
-  "h-[275px] lg:h-[300px]",
-  "h-[320px] lg:h-[360px]",
-  "h-[285px] lg:h-[310px]",
+  "h-[370px] lg:h-[400px]",
+  "h-[430px] lg:h-[480px]",
+  "h-[370px] lg:h-[500px]",
+  "h-[450px] lg:h-[490px]",
+  "h-[375px] lg:h-[400px]",
+  "h-[420px] lg:h-[460px]",
+  "h-[385px] lg:h-[410px]",
 ];
 
 const BOTTOM_HEIGHTS = [
-  "h-[300px] lg:h-[330px]",
-  "h-[260px] lg:h-[280px]",
-  "h-[300px] lg:h-[330px]",
-  "h-[250px] lg:h-[270px]",
-  "h-[300px] lg:h-[330px]",
-  "h-[270px] lg:h-[300px]",
-  "h-[300px] lg:h-[320px]",
+  "h-[400px] lg:h-[430px]",
+  "h-[360px] lg:h-[380px]",
+  "h-[400px] lg:h-[430px]",
+  "h-[350px] lg:h-[370px]",
+  "h-[400px] lg:h-[430px]",
+  "h-[370px] lg:h-[500px]",
+  "h-[400px] lg:h-[420px]",
 ];
 
 /* =========================================================
@@ -133,10 +144,70 @@ function PortfolioCard({
   work?: (typeof PORTFOLIO)[number];
   heightClass: string;
 }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  const [scrollOffset, setScrollOffset] = useState(0);
+  const [scrollDuration, setScrollDuration] = useState(1);
+  const [isHovered, setIsHovered] = useState(false);
+
   if (!work) return null;
+
+  /* =========================================================
+     이미지 실제 높이 계산
+  ========================================================= */
+
+  const calculateScroll = () => {
+    const card = cardRef.current;
+    const image = imageRef.current;
+
+    if (!card || !image) return;
+
+    const cardHeight = card.clientHeight;
+    const imageHeight = image.clientHeight;
+
+    const maxScroll = Math.max(imageHeight - cardHeight, 0);
+
+    /*
+      px / second
+
+      숫자가 작을수록 천천히
+      숫자가 클수록 빨리 내려감
+
+      110 ~ 140 정도 추천
+    */
+    const speed = 120;
+
+    const duration = maxScroll / speed;
+
+    setScrollOffset(maxScroll);
+
+    setScrollDuration(Math.max(3, Math.min(duration, 18)));
+  };
+
+  /* =========================================================
+     HOVER
+  ========================================================= */
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+
+    requestAnimationFrame(() => {
+      calculateScroll();
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setScrollOffset(0);
+    setScrollDuration(1.2);
+  };
 
   return (
     <motion.div
+      ref={cardRef}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       whileHover={{
         scale: 0.985,
       }}
@@ -155,68 +226,98 @@ function PortfolioCard({
         ${heightClass}
       `}
     >
-      {/* IMAGE */}
-
-      <img
-        src={work.image}
-        alt={work.title}
-        draggable={false}
-        className="
-          absolute
-          inset-0
-
-          h-full
-          w-full
-
-          select-none
-          object-cover
-          object-top
-
-          transition-transform
-          duration-700
-
-          ease-[cubic-bezier(0.16,1,0.3,1)]
-
-          group-hover:scale-[1.035]
-        "
-      />
-
-      {/* DARK GRADIENT */}
+      {/* =====================================================
+          IMAGE
+      ===================================================== */}
 
       <div
         className="
+          absolute
+          inset-0
+          overflow-hidden
+        "
+      >
+        <img
+          ref={imageRef}
+          src={work.image}
+          alt={work.title}
+          draggable={false}
+          onLoad={() => {
+            if (isHovered) {
+              calculateScroll();
+            }
+          }}
+          style={{
+            transform: `translate3d(0, -${scrollOffset}px, 0)`,
+            transitionDuration: `${scrollDuration}s`,
+            willChange: "transform",
+          }}
+          className="
+            absolute
+            left-0
+            top-0
+
+            block
+            h-auto
+            w-full
+
+            select-none
+
+            transition-transform
+            ease-linear
+          "
+        />
+      </div>
+
+      {/* =====================================================
+          DARK GRADIENT
+      ===================================================== */}
+
+      <div
+        className={`
           pointer-events-none
           absolute
           inset-0
+          z-[2]
 
           bg-gradient-to-b
           from-black/0
           via-black/0
           to-black/75
-        "
+
+          transition-opacity
+          duration-500
+
+          ${isHovered ? "opacity-20" : "opacity-100"}
+        `}
       />
 
-      {/* HOVER OVERLAY */}
+      {/* =====================================================
+          HOVER OVERLAY
+      ===================================================== */}
 
       <div
         className="
           pointer-events-none
           absolute
           inset-0
+          z-[3]
 
           bg-black/0
 
           transition-colors
           duration-500
 
-          group-hover:bg-black/[0.08]
+          group-hover:bg-black/[0.02]
         "
       />
 
-      {/* TEXT */}
+      {/* =====================================================
+          TEXT
+      ===================================================== */}
 
       <div
-        className="
+        className={`
           absolute
           bottom-0
           left-0
@@ -225,7 +326,12 @@ function PortfolioCard({
           w-full
 
           p-5
-        "
+
+          transition-all
+          duration-300
+
+          ${isHovered ? "translate-y-3 opacity-0" : "translate-y-0 opacity-100"}
+        `}
       >
         <p
           className="
@@ -250,19 +356,71 @@ function PortfolioCard({
 
         <h4
           className="
-            text-[14px]
-            font-bold
+    font-gmarket
 
-            tracking-[-0.035em]
+    text-[14px]
+    font-bold
 
-            text-white
+    tracking-[-0.035em]
 
-            sm:text-[15px]
-            lg:text-[16px]
-          "
+    text-white
+
+    sm:text-[15px]
+    lg:text-[16px]
+  "
         >
           {work.title}
         </h4>
+      </div>
+
+      {/* =====================================================
+          VIEW INDICATOR
+      ===================================================== */}
+
+      <div
+        className={`
+          pointer-events-none
+          absolute
+          right-4
+          top-4
+          z-20
+
+          flex
+          items-center
+          gap-2
+
+          rounded-full
+          bg-black/50
+
+          px-3
+          py-2
+
+          text-[8px]
+          font-semibold
+
+          tracking-[0.12em]
+          text-white
+
+          backdrop-blur-md
+
+          transition-all
+          duration-300
+
+          ${
+            isHovered ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
+          }
+        `}
+      >
+        <span
+          className="
+            block
+            h-[5px]
+            w-[5px]
+            rounded-full
+            bg-white
+          "
+        />
+        SCROLLING
       </div>
     </motion.div>
   );
@@ -280,7 +438,7 @@ function PortfolioColumn({
   index: number;
 }) {
   /*
-    레퍼런스처럼 각 컬럼 시작 높이를 살짝 다르게
+    기존처럼 각 컬럼 시작 높이를 살짝 다르게
   */
 
   const offsets = [
@@ -380,34 +538,20 @@ export default function PortfolioShowcase() {
             text-center
           "
         >
-          <p
-            className="
-              mb-5
-
-              text-[10px]
-              font-bold
-
-              tracking-[0.24em]
-
-              text-[#de1334]
-            "
-          >
-            SELECTED WORKS
-          </p>
-
           <h3
             className="
-              break-keep
+    font-gmarket
+    break-keep
 
-              text-[38px]
-              font-semibold
+    text-[38px]
+    font-bold
 
-              leading-[1.08]
-              tracking-[-0.06em]
+    leading-[1.25]
+    tracking-[-0.045em]
 
-              sm:text-[50px]
-              lg:text-[62px]
-            "
+    sm:text-[50px]
+    lg:text-[60px]
+  "
           >
             MADE BY YOUNG과 함께한
             <br />
@@ -418,19 +562,15 @@ export default function PortfolioShowcase() {
             className="
               mx-auto
               mt-7
-
               max-w-[620px]
-
               break-keep
-
               text-[13px]
               font-medium
 
               leading-[1.8]
+          
 
-              text-white/40
-
-              sm:text-[15px]
+              sm:text-[20px]
             "
           >
             브랜드의 규모와 분야에 관계없이
@@ -462,7 +602,9 @@ export default function PortfolioShowcase() {
           w-full
         "
       >
-        {/* LEFT FADE */}
+        {/* =====================================================
+            LEFT FADE
+        ===================================================== */}
 
         <div
           className="
@@ -484,7 +626,9 @@ export default function PortfolioShowcase() {
           "
         />
 
-        {/* RIGHT FADE */}
+        {/* =====================================================
+            RIGHT FADE
+        ===================================================== */}
 
         <div
           className="
@@ -506,6 +650,10 @@ export default function PortfolioShowcase() {
           "
         />
 
+        {/* =====================================================
+            SWIPER
+        ===================================================== */}
+
         <Swiper
           modules={[Autoplay, FreeMode]}
           loop
@@ -516,7 +664,12 @@ export default function PortfolioShowcase() {
           autoplay={{
             delay: 0,
             disableOnInteraction: false,
-            pauseOnMouseEnter: false,
+
+            /*
+              포트폴리오에 마우스를 올리면
+              가로 자동 슬라이드 멈춤
+            */
+            pauseOnMouseEnter: true,
           }}
           speed={7000}
           allowTouchMove
@@ -538,14 +691,14 @@ export default function PortfolioShowcase() {
             <SwiperSlide
               key={index}
               className="
-                !w-[245px]
+                  !w-[245px]
 
-                sm:!w-[275px]
+                  sm:!w-[275px]
 
-                lg:!w-[300px]
+                  lg:!w-[300px]
 
-                xl:!w-[320px]
-              "
+                  xl:!w-[320px]
+                "
             >
               <PortfolioColumn group={group} index={index} />
             </SwiperSlide>

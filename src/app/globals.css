@@ -22,3 +22,29 @@ body {
   background: #111111;
   color: #ffffff;
 }
+
+.portfolio-scroll-image {
+  transform: translateY(0);
+  transition: transform 8s linear;
+}
+
+/* 카드에 마우스 올렸을 때
+   이미지 전체를 위로 이동해서
+   맨 아래까지 보여줌 */
+.group:hover .portfolio-scroll-image {
+  transform: translateY(calc(-100% + 430px));
+}
+
+
+@font-face {
+  font-family: "GmarketSans";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
+    format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-gmarket {
+  font-family: "GmarketSans", "Pretendard", sans-serif;
+}

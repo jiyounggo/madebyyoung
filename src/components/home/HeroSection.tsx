@@ -137,9 +137,12 @@ export default function HeroSection() {
         }}
         className="
           relative
-          h-[100dvh]
-          min-h-[700px]
+          min-h-[100svh]
+          h-auto
           w-full
+
+          lg:h-[100dvh]
+          lg:min-h-[700px]
           overflow-hidden
         "
       >
@@ -147,19 +150,28 @@ export default function HeroSection() {
           className="
             mx-auto
             grid
-            h-full
             w-full
             max-w-[1400px]
 
             grid-cols-1
+            grid-rows-[auto_auto]
+            gap-2
 
-            px-6
+            px-5
             pb-24
-            pt-20
+            pt-24
 
+            sm:px-6
+            sm:pt-28
+
+            md:gap-6
             md:px-10
+            md:pt-28
 
+            lg:h-full
             lg:grid-cols-[0.92fr_1.08fr]
+            lg:grid-rows-1
+            lg:gap-0
             lg:px-14
             lg:pb-20
             lg:pt-20
@@ -177,9 +189,11 @@ export default function HeroSection() {
               z-20
 
               flex
-              h-full
-              items-center
+              h-auto
+              items-start
 
+              lg:h-full
+              lg:items-center
               lg:pr-12
             "
           >
@@ -202,14 +216,17 @@ export default function HeroSection() {
                   duration: 0.7,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="w-full -translate-y-[2%]"
+                className="w-full lg:-translate-y-[2%]"
               >
                 {/* EYEBROW */}
 
                 <p
                   className="
-                    mb-6
+                    mb-3
+                    font-gmarket
 
+                    sm:mb-4
+                    md:mb-6
           
                     font-semibold
 
@@ -218,8 +235,10 @@ export default function HeroSection() {
 
                     text-black/40
 
-                  text-[18px]
-md:text-[24px]
+                    text-[12px]
+                    sm:text-[13px]
+                    md:text-[18px]
+                    lg:text-[24px]
                   "
                 >
                   {slide.eyebrow}
@@ -229,13 +248,20 @@ md:text-[24px]
 
                 <h1
                   className="
-                 text-[56px]
+                    text-[clamp(34px,10vw,46px)]
+                    font-gmarket
 
+                    sm:text-[46px]
+                    md:text-[54px]
+                    lg:text-[60px]
                     font-semibold
 
-                    leading-[1.08]
+                    leading-[1.12]
 
-                    tracking-[-0.055em]
+                    tracking-[-0.05em]
+
+                    md:leading-[1.08]
+                    md:tracking-[-0.055em]
 
                     text-[#171717]
                   "
@@ -262,8 +288,10 @@ md:text-[24px]
                     delay: 0.25,
                   }}
                   className="
-                    mt-7
+                    mt-5
                     h-[3px]
+
+                    sm:mt-6
                     bg-[#DE1334]
 
                     md:mt-8
@@ -274,19 +302,23 @@ md:text-[24px]
 
                 <p
                   className="
-                    mt-6
+                    mt-4
+                    max-w-[560px]
 
-              text-[15px]
-md:text-[18px]
-lg:text-[25px]
-
-                    leading-[1.75]
-
+                    text-[13px]
+                    leading-[1.65]
                     tracking-[-0.025em]
-
                     text-black/55
 
-                  
+                    sm:mt-5
+                    sm:text-[14px]
+
+                    md:mt-6
+                    md:text-[18px]
+                    md:leading-[1.75]
+
+                    lg:text-[21px]
+                    xl:text-[20px]
                   "
                 >
                   {slide.description1}
@@ -307,13 +339,18 @@ lg:text-[25px]
             className="
               relative
 
+              mt-2
               flex
-              h-full
+              h-auto
               min-h-0
 
               items-center
               justify-center
 
+              sm:mt-4
+              md:mt-0
+
+              lg:h-full
               lg:pl-4
             "
           >
@@ -344,8 +381,13 @@ lg:text-[25px]
                 }}
                 className="
                   relative
-                  h-full
+                  flex
+                  h-auto
                   w-full
+                  items-center
+                  justify-center
+
+                  lg:h-full
                 "
               >
                 {/* ======================================
@@ -383,8 +425,11 @@ lg:text-[25px]
         <div
           className="
             absolute
-            bottom-8
-            left-6
+            bottom-5
+            left-5
+
+            sm:bottom-6
+            sm:left-6
             z-30
 
             flex
@@ -548,13 +593,14 @@ function WebsiteVisual() {
       className="
         relative
         flex
-        h-[420px]
+        h-[280px]
         w-full
         items-center
         justify-center
 
-        md:h-[540px]
-        lg:h-[620px]
+        sm:h-[340px]
+        md:h-[min(540px,65vh)]
+        lg:h-[min(620px,72vh)]
       "
     >
       <motion.div
@@ -585,9 +631,10 @@ function WebsiteVisual() {
         }}
         className="
           relative
-          w-[100%]
+          w-[105%]
           max-w-[820px]
 
+          sm:w-[100%]
           md:w-[96%]
           lg:w-[105%]
         "
@@ -617,14 +664,15 @@ function DevelopmentVisual() {
       className="
         relative
         flex
-        h-[430px]
+        h-[330px]
         w-full
         items-center
         justify-center
 
-        md:h-[580px]
+        sm:h-[390px]
+        md:h-[min(580px,65vh)]
 
-        lg:h-[700px]
+        lg:h-[min(700px,72vh)]
       "
     >
       {/* BACKGROUND CIRCLE */}
@@ -632,10 +680,13 @@ function DevelopmentVisual() {
         className="
           absolute
 
-          h-[350px]
-          w-[350px]
+          h-[250px]
+          w-[250px]
 
           rounded-full
+
+          sm:h-[320px]
+          sm:w-[320px]
 
           bg-white/55
 
@@ -667,10 +718,16 @@ function DevelopmentVisual() {
           relative
           z-10
 
-          w-[94%]
+          w-[118%]
           max-w-[760px]
+          scale-[0.78]
 
           overflow-hidden
+
+          sm:w-[108%]
+          sm:scale-[0.88]
+          md:w-[94%]
+          md:scale-100
 
           rounded-[28px]
 
@@ -1255,14 +1312,15 @@ function SeoVisual() {
       className="
         relative
         flex
-        h-[430px]
+        h-[330px]
         w-full
         items-center
         justify-center
 
-        md:h-[580px]
+        sm:h-[390px]
+        md:h-[min(580px,65vh)]
 
-        lg:h-[700px]
+        lg:h-[min(700px,72vh)]
       "
     >
       {/* BACKGROUND CIRCLE */}
@@ -1270,12 +1328,15 @@ function SeoVisual() {
         className="
           absolute
 
-          h-[350px]
-          w-[350px]
+          h-[250px]
+          w-[250px]
 
           rounded-full
 
           bg-white/55
+
+          sm:h-[320px]
+          sm:w-[320px]
 
           md:h-[520px]
           md:w-[520px]
@@ -1305,10 +1366,17 @@ function SeoVisual() {
           relative
           z-10
 
-          w-[95%]
+          w-[116%]
           max-w-[760px]
+          scale-[0.80]
 
-          rounded-[28px]
+          rounded-[24px]
+
+          sm:w-[108%]
+          sm:scale-[0.9]
+          md:w-[95%]
+          md:scale-100
+          md:rounded-[28px]
 
           bg-white
 
@@ -1767,14 +1835,15 @@ function AutomationVisual() {
       className="
         relative
         flex
-        h-[420px]
+        h-[320px]
         w-full
         items-center
         justify-center
 
-        md:h-[560px]
+        sm:h-[380px]
+        md:h-[min(560px,65vh)]
 
-        lg:h-[690px]
+        lg:h-[min(690px,72vh)]
       "
     >
       {/* 기존 뒤쪽 원 - 디자인 그대로, 크기만 확대 */}
@@ -1782,12 +1851,15 @@ function AutomationVisual() {
         className="
           absolute
 
-          h-[350px]
-          w-[350px]
+          h-[245px]
+          w-[245px]
 
           rounded-full
 
           bg-white/45
+
+          sm:h-[320px]
+          sm:w-[320px]
 
           md:h-[540px]
           md:w-[540px]
@@ -1803,11 +1875,18 @@ function AutomationVisual() {
           relative
           z-10
 
-          h-[400px]
-          w-[96%]
+          h-[300px]
+          w-[110%]
           max-w-[760px]
+          scale-[0.86]
+
+          sm:h-[350px]
+          sm:w-[104%]
+          sm:scale-[0.94]
 
           md:h-[530px]
+          md:w-[96%]
+          md:scale-100
 
           lg:h-[580px]
         "
@@ -2047,20 +2126,32 @@ function AutomationNode({
         z-10
 
         flex
-        h-[76px]
-        min-w-[110px]
+        h-[54px]
+        min-w-[82px]
 
         items-center
+
+        sm:h-[64px]
+        sm:min-w-[96px]
+
+        md:h-[76px]
+        md:min-w-[110px]
         justify-center
 
         rounded-[18px]
 
         border
 
-        px-5
+        px-3
 
-        text-[17px]
+        text-[11px]
         font-semibold
+
+        sm:px-4
+        sm:text-[13px]
+
+        md:px-5
+        md:text-[17px]
 
         shadow-[0_15px_45px_rgba(0,0,0,0.08)]
 

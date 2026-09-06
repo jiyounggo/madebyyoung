@@ -129,7 +129,7 @@ export default function ServiceSection() {
           <h2
             className="
               break-keep
-
+font-gmarket
               text-[40px]
               font-bold
               leading-[1.1]
@@ -138,7 +138,7 @@ export default function ServiceSection() {
               text-[#151515]
 
               sm:text-[48px]
-              md:text-[56px]
+              md:text-[60px]
             "
           >
             필요한 모든 홈페이지를
@@ -160,7 +160,7 @@ export default function ServiceSection() {
 
               text-[#555]
 
-              md:text-[17px]
+              md:text-[20px]
             "
           >
             홈페이지 제작부터 리뉴얼, 운영,
@@ -268,9 +268,9 @@ export default function ServiceSection() {
                       <span
                         className={`
                           break-keep
-
+                          font-gmarket
                           text-[15px]
-                          font-bold
+                       
                           tracking-[-0.035em]
 
                           sm:text-[17px]
@@ -372,7 +372,7 @@ export default function ServiceSection() {
           text-[15px]
           font-bold
           tracking-[-0.03em]
-
+                    font-gmarket
           text-[#de1334]
 
           md:text-[16px]
@@ -397,7 +397,7 @@ export default function ServiceSection() {
           text-[#171717]
 
           sm:text-[35px]
-
+                      font-gmarket
           md:text-[40px]
 
           lg:min-h-[100px]

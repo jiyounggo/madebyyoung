@@ -83,7 +83,7 @@ export default function SeoBanner() {
                 className="
                   text-[16px]
                   font-bold
-
+                  font-gmarket
                   text-[#de1334]
                 "
               >
@@ -102,8 +102,8 @@ export default function SeoBanner() {
                   tracking-[-0.04em]
 
                   text-white
-
-                  md:text-[26px]
+                font-gmarket
+                  md:text-[32px]
                 "
               >
                 홈페이지는 만드는 것보다,
