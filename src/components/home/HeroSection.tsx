@@ -2,60 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-
-/* ==========================================
-   SLIDES
-========================================== */
-
-const slides = [
-  {
-    id: 1,
-    type: "website",
-    eyebrow: "WEBSITE STUDIO",
-    title1: "브랜드를 담은",
-    title2: "홈페이지를 만듭니다.",
-    description1: "기획부터 디자인, 개발까지.",
-    description2: "브랜드에 필요한 웹을 하나의 흐름으로 만듭니다.",
-
-    background: "#F4F1EC",
-  },
-
-  {
-    id: 2,
-    type: "development",
-    eyebrow: "WEB DEVELOPMENT",
-    title1: "보이는 것 너머의",
-    title2: "기능까지.",
-    description1: "관리자 페이지, 회원, DB, 검색과 필터 등",
-    description2: "비즈니스에 필요한 기능을 구현합니다.",
-
-    background: "#ECEFF1",
-  },
-
-  {
-    id: 3,
-    type: "seo",
-    eyebrow: "SEO",
-    title1: "잘 만든 웹이,",
-    title2: "잘 발견되도록.",
-    description1: "검색엔진이 사이트를 제대로 이해할 수 있도록",
-    description2: "구조부터 구글 · 네이버 기본 SEO까지 함께 설계합니다.",
-
-    background: "#F0F2EA",
-  },
-
-  {
-    id: 4,
-    type: "automation",
-    eyebrow: "AI & AUTOMATION",
-    title1: "반복되는 일은,",
-    title2: "더 간단하게.",
-    description1: "문의 수집부터 데이터 정리, 콘텐츠와 관리 업무까지.",
-    description2: "반복되는 작업을 웹과 AI로 연결합니다.",
-
-    background: "#F7ECEE",
-  },
-];
+import { heroSlidesByVariant, type HeroVariant } from "@/data/homepageContent";
 
 const searchResults = [
   {
@@ -76,21 +23,18 @@ const searchResults = [
       "좋은 홈페이지는 디자인뿐만 아니라 사용자 경험과 콘텐츠 구조, 모바일 환경까지 함께 고려해야 합니다.",
     top: false,
   },
-  // {
-  //   site: "DIGITAL BUSINESS",
-  //   url: "digital-business.kr",
-  //   initial: "D",
-  //   title: "비즈니스 성장을 위한 웹사이트 구축 가이드",
-  //   description:
-  //     "검색 노출부터 고객 문의, 데이터 관리까지 비즈니스에 필요한 웹사이트의 핵심 요소를 살펴봅니다.",
-  //   top: false,
-  // },
 ];
 
-export default function HeroSection() {
+type HeroSectionProps = {
+  variant?: HeroVariant;
+};
+
+export default function HeroSection({ variant = "default" }: HeroSectionProps) {
   /* ==========================================
      SLIDER
   ========================================== */
+
+  const slides = heroSlidesByVariant[variant];
 
   const [activeSlide, setActiveSlide] = useState(0);
 
