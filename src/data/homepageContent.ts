@@ -1,6 +1,7 @@
 export type HeroVariant =
   | "default"
   | "busan"
+  | "daegu"
   | "corporate"
   | "medical"
   | "renewal"
@@ -90,6 +91,50 @@ export const heroSlidesByVariant: Record<HeroVariant, HeroSlide[]> = {
       title1: "부산에서 제일 먼저",
       title2: "찾는 홈페이지 회사가 되도록.",
       description1: "검색엔진이 사이트를 제대로 이해할 수 있도록",
+      description2: "구조부터 구글 · 네이버 기본 SEO까지 함께 설계합니다.",
+      background: "#F0F2EA",
+    },
+    {
+      id: 4,
+      type: "automation",
+      eyebrow: "MEDICAL WEBSITE",
+      title1: "병원에 필요한",
+      title2: "정보를 더 쉽게.",
+      description1: "의료진, 진료과목, 상담, 오시는 길까지.",
+      description2: "환자에게 신뢰감 있게 전달되는 병원 홈페이지를 제작합니다.",
+      background: "#F7ECEE",
+    },
+  ],
+
+  daegu: [
+    {
+      id: 1,
+      type: "website",
+      eyebrow: "DAEGU WEBSITE PRODUCTION",
+      title1: "대구 홈페이지 제작,",
+      title2: "브랜드의 시작을 만듭니다.",
+      description1: "기획부터 디자인, 개발까지.",
+      description2:
+        "대구 기업·브랜드의 강점을 담은 홈페이지를 하나의 흐름으로 만듭니다.",
+      background: "#F4F1EC",
+    },
+    {
+      id: 2,
+      type: "development",
+      eyebrow: "CORPORATE WEBSITE",
+      title1: "기업의 강점을",
+      title2: "명확하게 보여줍니다.",
+      description1: "회사 소개, 사업 분야, 포트폴리오, 문의까지.",
+      description2: "고객에게 신뢰를 주는 기업 홈페이지를 제작합니다.",
+      background: "#ECEFF1",
+    },
+    {
+      id: 3,
+      type: "seo",
+      eyebrow: "SEO",
+      title1: "필요한 고객이",
+      title2: "홈페이지를 찾도록.",
+      description1: "검색엔진이 사이트의 서비스와 정보를 이해하도록",
       description2: "구조부터 구글 · 네이버 기본 SEO까지 함께 설계합니다.",
       background: "#F0F2EA",
     },
@@ -245,7 +290,6 @@ export const heroSlidesByVariant: Record<HeroVariant, HeroSlide[]> = {
       description2: "브랜드의 감도를 살린 쇼핑몰을 제작합니다.",
       background: "#F4F1EC",
     },
-
     {
       id: 2,
       type: "development",
@@ -256,7 +300,6 @@ export const heroSlidesByVariant: Record<HeroVariant, HeroSlide[]> = {
       description2: "불편함 없는 쇼핑 흐름을 함께 설계합니다.",
       background: "#ECEFF1",
     },
-
     {
       id: 3,
       type: "seo",
@@ -267,7 +310,6 @@ export const heroSlidesByVariant: Record<HeroVariant, HeroSlide[]> = {
       description2: "구조부터 구글 · 네이버 기본 SEO까지 함께 설계합니다.",
       background: "#F0F2EA",
     },
-
     {
       id: 4,
       type: "automation",

@@ -94,6 +94,11 @@ const PORTFOLIO = [
     category: "WEB DEVELOPMENT",
     image: "/images/profile/work-09.jpg",
   },
+  {
+    title: "웹 프로젝트",
+    category: "WEB DEVELOPMENT",
+    image: "/images/profile/work-16.png",
+  },
 ];
 
 /* =========================================================

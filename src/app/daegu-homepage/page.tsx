@@ -13,54 +13,53 @@ import TopBanner from "@/components/layout/TopBanner";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  // layout.tsx의 title template이 | MADE BY YOUNG를 자동으로 붙여줌
-  title: "홈페이지 리뉴얼 | 기업·브랜드 홈페이지 리뉴얼",
+  title: "대구 홈페이지 제작 | 기업·병원·브랜드 홈페이지 전문",
 
   description:
-    "홈페이지 리뉴얼 MADE BY YOUNG. 오래된 기업·브랜드 홈페이지를 현재 비즈니스와 고객 흐름에 맞춰 디자인, 기능, 모바일 환경, SEO까지 새롭게 개선합니다.",
+    "대구 홈페이지 제작 MADE BY YOUNG. 기업·병원·브랜드 홈페이지 제작부터 쇼핑몰 리뉴얼, SEO 기본 세팅과 유지보수까지 비즈니스에 맞게 제공합니다.",
 
   keywords: [
-    "홈페이지 리뉴얼",
-    "기업 홈페이지 리뉴얼",
-    "브랜드 홈페이지 리뉴얼",
-    "웹사이트 리뉴얼",
-    "홈페이지 디자인 리뉴얼",
-    "쇼핑몰 리뉴얼",
-    "반응형 홈페이지 리뉴얼",
-    "SEO 홈페이지 리뉴얼",
+    "대구 홈페이지 제작",
+    "대구 홈페이지",
+    "대구 기업 홈페이지 제작",
+    "대구 병원 홈페이지 제작",
+    "대구 쇼핑몰 제작",
+    "대구 홈페이지 리뉴얼",
+    "대구 웹사이트 제작",
+    "대구 웹디자인",
   ],
 
   alternates: {
-    canonical: "/homepage-renewal",
+    canonical: "/daegu-homepage",
   },
 
   openGraph: {
-    title: "홈페이지 리뉴얼 | MADE BY YOUNG",
+    title: "대구 홈페이지 제작 | MADE BY YOUNG",
     description:
-      "오래된 홈페이지를 디자인, 기능, 모바일 환경과 SEO까지 현재 비즈니스에 맞게 새롭게 개선합니다.",
-    url: "/homepage-renewal",
+      "기업·병원·브랜드 홈페이지 제작부터 쇼핑몰 리뉴얼과 SEO 기본 세팅까지, 비즈니스에 맞는 홈페이지를 제작합니다.",
+    url: "/daegu-homepage",
     type: "website",
     images: [
       {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "MADE BY YOUNG 홈페이지 리뉴얼",
+        alt: "MADE BY YOUNG 대구 홈페이지 제작",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "홈페이지 리뉴얼 | MADE BY YOUNG",
+    title: "대구 홈페이지 제작 | MADE BY YOUNG",
     description:
-      "오래된 홈페이지를 디자인, 기능, 모바일 환경과 SEO까지 현재 비즈니스에 맞게 새롭게 개선합니다.",
+      "기업·병원·브랜드 홈페이지 제작부터 쇼핑몰 리뉴얼과 SEO 기본 세팅까지, 비즈니스에 맞는 홈페이지를 제작합니다.",
     images: ["/images/og-image.jpg"],
   },
 };
 
-export default function HomepageRenewalPage() {
-  const content = landingPageContent.renewal;
+export default function DaeguHomepagePage() {
+  const content = landingPageContent.daegu;
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -89,10 +88,10 @@ export default function HomepageRenewalPage() {
 
       <main>
         <section id="home">
-          <HeroSection variant="renewal" />
+          <HeroSection variant="daegu" />
         </section>
 
-        <LandingSeoSection variant="renewal" />
+        <LandingSeoSection variant="daegu" />
 
         <section id="services" className="scroll-mt-[90px]">
           <ServiceSection />

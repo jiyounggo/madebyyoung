@@ -2,488 +2,145 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Globe2 } from "lucide-react";
-import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
 const navItems = [
-  { name: "ABOUT", href: "#about" },
-  { name: "SERVICES", href: "#services" },
-  { name: "PROCESS", href: "#process" },
-  { name: "CONTACT", href: "#contact" },
-];
-
-/* =========================================================
-   SOCIAL LINKS
-
-   ↓ 실제 계정 주소 생기면 href만 변경하면 됨
-========================================================= */
-
-const socialItems = [
-  {
-    name: "Instagram",
-    href: "https://www.instagram.com/",
-    icon: FaInstagram,
-  },
-  {
-    name: "YouTube",
-    href: "https://www.youtube.com/",
-    icon: FaYoutube,
-  },
-  {
-    name: "Website",
-    href: "https://madebyyoung.com",
-    icon: Globe2,
-  },
+  { name: "HOME", href: "/#home" },
+  { name: "SERVICES", href: "/#services" },
+  { name: "PROCESS", href: "/#process" },
+  { name: "PORTFOLIO", href: "/#works" },
+  { name: "ABOUT", href: "/#about" },
+  { name: "INQUIRY", href: "/#inquiry" },
+  { name: "CONTACT", href: "/#contact" },
 ];
 
 export default function Header() {
   const { scrollY } = useScroll();
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 40);
   });
 
-  /* =========================================================
-     SMOOTH SCROLL
-  ========================================================= */
-
-  const handleScroll = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    targetId: string,
-  ) => {
-    e.preventDefault();
-
-    const target = document.querySelector(targetId);
-
-    if (!target) return;
-
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   return (
     <motion.header
-      initial={{
-        opacity: 0,
-        y: -14,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-      }}
+      initial={{ opacity: 0, y: -14 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: 0.8,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className={`
-  fixed
-  left-0
-  z-50
-  w-full
+      className="
+    sticky
+    top-0
+    left-0
+    z-50
+    w-full
 
-  border-b
-  border-black/[0.05]
+    border-b
+    border-black/[0.05]
 
-  transition-all
-  duration-500
-  ease-[cubic-bezier(0.16,1,0.3,1)]
-
-  ${
-    isScrolled
-      ? `
-        top-0
-        bg-white/90
-        shadow-[0_8px_30px_rgba(0,0,0,0.035)]
-        backdrop-blur-xl
-      `
-      : `
-        top-[38px]
-        bg-white/70
-        backdrop-blur-md
-      `
-  }
-`}
+    bg-white/90
+    shadow-[0_8px_30px_rgba(0,0,0,0.035)]
+    backdrop-blur-xl
+  "
     >
-      <div
-        className="
-          mx-auto
-          flex
-          h-[78px]
-          w-full
-          items-center
-          justify-between
-
-          px-[clamp(20px,4vw,72px)]
-        "
-      >
-        {/* ==================================================
-            LOGO
-        ================================================== */}
-
+      <div className="mx-auto flex h-[78px] w-full items-center justify-between px-[clamp(20px,4vw,72px)]">
         <Link
           href="/"
           aria-label="MADE BY YOUNG 홈"
-          className="
-            group
-            relative
-            z-10
-            block
-            shrink-0
-          "
+          onClick={closeMobileMenu}
+          className="group relative z-10 block shrink-0"
         >
-          <div
-            className="
-              relative
-              h-[36px]
-              w-[clamp(145px,12vw,205px)]
-            "
-          >
+          <div className="relative h-[36px] w-[clamp(145px,12vw,205px)]">
             <Image
               src="/images/header-logo-black.png"
               alt="MADE BY YOUNG"
               width={700}
               height={200}
               priority
-              className="
-                absolute
-                left-0
-                top-1/2
-
-                h-auto
-                w-full
-
-                -translate-y-1/2
-
-                object-contain
-                object-left
-              "
+              className="absolute left-0 top-1/2 h-auto w-full -translate-y-1/2 object-contain object-left"
             />
           </div>
 
-          {/* logo hover underline */}
-
-          <span
-            className="
-              absolute
-              -bottom-[8px]
-              left-0
-
-              h-[2px]
-              w-0
-
-              rounded-full
-              bg-[#DE1334]
-
-              transition-all
-              duration-500
-
-              ease-[cubic-bezier(0.16,1,0.3,1)]
-
-              group-hover:w-full
-            "
-          />
+          <span className="absolute -bottom-[8px] left-0 h-[2px] w-0 rounded-full bg-[#DE1334] transition-all duration-500 group-hover:w-full" />
         </Link>
-
-        {/* ==================================================
-            DESKTOP NAVIGATION
-        ================================================== */}
 
         <nav
           aria-label="메인 메뉴"
-          className="
-            absolute
-            left-1/2
-
-            hidden
-            -translate-x-1/2
-            items-center
-
-            gap-[clamp(24px,2.4vw,48px)]
-
-            lg:flex
-          "
+          className="hidden items-center gap-[clamp(15px,1.5vw,28px)] xl:flex"
         >
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.name}
               href={item.href}
-              onClick={(e) => handleScroll(e, item.href)}
-              className="
-                group
-                relative
-                overflow-hidden
-
-                py-2
-
-                text-[14px]
-                font-medium
-
-                tracking-[0.04em]
-
-                text-[#171717]
-              "
+              className="relative py-2 text-[12px] font-medium tracking-[0.04em] text-[#171717] transition-colors duration-300 hover:text-[#DE1334]"
             >
-              {/* DEFAULT */}
-
-              <span
-                className="
-                  block
-
-                  transition-transform
-                  duration-500
-
-                  ease-[cubic-bezier(0.16,1,0.3,1)]
-
-                  group-hover:-translate-y-[150%]
-                "
-              >
-                {item.name}
-              </span>
-
-              {/* HOVER */}
-
-              <span
-                className="
-                  absolute
-                  left-0
-                  top-[150%]
-
-                  text-[#DE1334]
-
-                  transition-transform
-                  duration-500
-
-                  ease-[cubic-bezier(0.16,1,0.3,1)]
-
-                  group-hover:-translate-y-[150%]
-                "
-              >
-                {item.name}
-              </span>
-            </a>
+              {item.name}
+            </Link>
           ))}
+
+          <Link
+            href="/#contact"
+            className="group ml-1 flex h-[38px] items-center justify-center gap-1.5 rounded-full bg-[#171717] px-4 text-[12px] font-medium text-white transition-colors duration-300 hover:bg-[#DE1334]"
+          >
+            문의하기
+            <ArrowUpRight
+              size={14}
+              strokeWidth={1.8}
+              className="transition-transform duration-300 group-hover:-translate-y-[2px] group-hover:translate-x-[2px]"
+            />
+          </Link>
         </nav>
 
-        {/* ==================================================
-            DESKTOP RIGHT
-        ================================================== */}
-
-        <div
-          className="
-            hidden
-            items-center
-            gap-3
-
-            lg:flex
-          "
+        <button
+          type="button"
+          aria-label={isMobileMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
+          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70 text-[#171717] xl:hidden"
         >
-          {/* SOCIAL ICONS */}
+          {isMobileMenuOpen ? <X size={19} /> : <Menu size={19} />}
+        </button>
+      </div>
 
-          <div
-            className="
-              flex
-              items-center
-              gap-1
-
-              rounded-full
-
-              border
-              border-black/[0.07]
-
-              bg-white/60
-
-              p-1
-
-              shadow-[0_4px_20px_rgba(0,0,0,0.025)]
-            "
-          >
-            {socialItems.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={item.name}
-                  title={item.name}
-                  className="
-                    group
-
-                    flex
-                    h-9
-                    w-9
-                    items-center
-                    justify-center
-
-                    rounded-full
-
-                    text-[#202020]
-
-                    transition-all
-                    duration-300
-
-                    hover:bg-[#DE1334]
-                    hover:text-white
-                  "
-                >
-                  <Icon
-                    size={16}
-                    className="
-                      transition-transform
-                      duration-300
-
-                      group-hover:scale-110
-                    "
-                  />
-                </a>
-              );
-            })}
+      <div
+        className={`overflow-hidden bg-white transition-all duration-300 xl:hidden ${
+          isMobileMenuOpen
+            ? "max-h-[600px] border-t border-black/10"
+            : "max-h-0"
+        }`}
+      >
+        <nav className="px-5 py-5" aria-label="모바일 메뉴">
+          <div className="grid grid-cols-2 border-t border-black/10">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={closeMobileMenu}
+                className="border-b border-black/10 py-4 text-[12px] font-semibold tracking-[0.06em] text-[#171717]"
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
 
-          {/* CONTACT BUTTON */}
-
-          <a
-            href="#contact"
-            onClick={(e) => handleScroll(e, "#contact")}
-            className="
-              group
-
-              flex
-              h-[42px]
-              items-center
-              justify-center
-              gap-2
-
-              rounded-full
-
-              bg-[#171717]
-
-              px-5
-
-              text-[13px]
-              font-medium
-
-              tracking-[0.025em]
-
-              text-white
-
-              transition-all
-              duration-300
-
-              hover:bg-[#DE1334]
-            "
+          <Link
+            href="/#contact"
+            onClick={closeMobileMenu}
+            className="mt-6 flex h-12 items-center justify-center gap-2 bg-[#171717] text-[13px] font-medium text-white"
           >
-            <span>CONTACT</span>
-
-            <ArrowUpRight
-              size={15}
-              strokeWidth={1.8}
-              className="
-                transition-transform
-                duration-300
-
-                group-hover:-translate-y-[2px]
-                group-hover:translate-x-[2px]
-              "
-            />
-          </a>
-        </div>
-
-        {/* ==================================================
-            MOBILE RIGHT
-        ================================================== */}
-
-        <div
-          className="
-            flex
-            items-center
-            gap-2
-
-            lg:hidden
-          "
-        >
-          {/* INSTAGRAM */}
-
-          <a
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="
-              flex
-              h-9
-              w-9
-              items-center
-              justify-center
-
-              rounded-full
-
-              border
-              border-black/[0.07]
-
-              bg-white/70
-
-              text-[#171717]
-
-              backdrop-blur-md
-
-              transition-all
-              duration-300
-
-              hover:bg-[#DE1334]
-              hover:text-white
-            "
-          >
-            <FaInstagram size={16} />
-          </a>
-
-          {/* CONTACT */}
-
-          <a
-            href="#contact"
-            onClick={(e) => handleScroll(e, "#contact")}
-            className="
-              flex
-              h-9
-              items-center
-              justify-center
-              gap-1.5
-
-              rounded-full
-
-              bg-[#171717]
-
-              px-4
-
-              text-[11px]
-              font-medium
-
-              tracking-[0.04em]
-
-              text-white
-
-              transition-colors
-              duration-300
-
-              hover:bg-[#DE1334]
-            "
-          >
-            CONTACT
-            <ArrowUpRight size={13} strokeWidth={1.8} />
-          </a>
-        </div>
+            프로젝트 문의
+            <ArrowUpRight size={16} />
+          </Link>
+        </nav>
       </div>
     </motion.header>
   );
