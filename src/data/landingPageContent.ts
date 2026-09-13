@@ -1,5 +1,6 @@
 export type LandingVariant =
   | "busan"
+  | "daegu"
   | "corporate"
   | "medical"
   | "renewal"
@@ -33,6 +34,31 @@ export const landingPageContent: Record<LandingVariant, LandingContent> = {
         question: "부산에서 대면 상담도 가능한가요?",
         answer:
           "네. 일정과 위치를 조율해 부산 지역 대면 상담이 가능하며, 카카오톡과 온라인 미팅으로도 진행할 수 있습니다.",
+      },
+      {
+        question: "홈페이지 제작 기간은 얼마나 걸리나요?",
+        answer:
+          "페이지 수와 기능, 자료 준비 상태에 따라 다르지만 일반적인 기업·브랜드 홈페이지는 보통 2~4주 내외로 진행됩니다.",
+      },
+    ],
+  },
+
+  daegu: {
+    label: "DAEGU WEBSITE PRODUCTION",
+    title: "대구 사업자를 위한 홈페이지 제작",
+    description:
+      "대구에서 사업을 운영하며 홈페이지 제작이나 리뉴얼이 필요한 분들을 위해, 업종과 고객 흐름에 맞는 웹사이트를 기획하고 제작합니다.",
+    points: [
+      "기업·브랜드·서비스 소개에 맞춘 맞춤형 홈페이지 제작",
+      "대구를 비롯한 전국 온라인 상담 진행",
+      "모바일 환경까지 고려한 반응형 웹사이트 구현",
+      "구글·네이버 검색 노출을 위한 기본 SEO 세팅",
+    ],
+    faqs: [
+      {
+        question: "대구 홈페이지 제작은 비대면으로도 진행할 수 있나요?",
+        answer:
+          "네. 카카오톡과 온라인 미팅을 통해 기획부터 디자인, 개발, 검수까지 진행할 수 있으며 단계별 진행 상황을 공유드립니다.",
       },
       {
         question: "홈페이지 제작 기간은 얼마나 걸리나요?",
