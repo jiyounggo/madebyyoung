@@ -5,10 +5,16 @@ import QuickMenu from "@/components/layout/QuickMenu";
 export const metadata: Metadata = {
   metadataBase: new URL("https://madebyyoung.com"),
 
+  verification: {
+    google: "qBCJWi2fCnb7nkvujVlfM1i08ZZb9KZYF0_2EqFazI0",
+  },
+
   title: {
     default: "MADE BY YOUNG | 홈페이지 제작",
     template: "%s | MADE BY YOUNG",
   },
+
+  // 나머지 기존 코드 그대로
 
   description:
     "브랜드와 비즈니스에 맞는 홈페이지를 제작합니다. 맞춤형 홈페이지 제작, 홈페이지 리뉴얼, 유지보수, SEO, AI 및 업무 자동화 개발까지 제공합니다.",
