@@ -25,6 +25,10 @@ const INITIAL_FORM: ContactForm = {
   message: "",
 };
 
+// Google Apps Script 웹 앱 배포 후 받은 /exec 주소를 붙여 넣어 주세요.
+const GOOGLE_SHEETS_WEBHOOK_URL =
+  "https://script.google.com/macros/s/AKfycbyOOOi5RK-PAni7cxLvEuH_QSEgYLG6hYSZaVd7pqjEpOCadVuvvT6H7tluWD9C5c4/exec";
+
 export default function ProjectContactModal({
   isOpen,
   onClose,
@@ -32,6 +36,8 @@ export default function ProjectContactModal({
   const [form, setForm] = useState<ContactForm>(INITIAL_FORM);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   /* ==========================================
      BODY SCROLL LOCK
@@ -85,18 +91,34 @@ export default function ProjectContactModal({
      SUBMIT
   ========================================== */
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError("");
 
-    console.log("상담 문의", form);
+    try {
+      if (!GOOGLE_SHEETS_WEBHOOK_URL) {
+        throw new Error("상담 접수 설정이 아직 완료되지 않았습니다.");
+      }
 
-    setIsSubmitted(true);
+      await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          ...form,
+          submittedAt: new Date().toISOString(),
+        }),
+      });
 
-    /*
-      나중에 여기에서
-      Google Sheets / Supabase / API Route
-      전송 연결
-    */
+      setIsSubmitted(true);
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error ? error.message : "잠시 후 다시 시도해 주세요.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   /* ==========================================
@@ -568,6 +590,7 @@ export default function ProjectContactModal({
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="
                   mt-6
 
@@ -592,11 +615,19 @@ export default function ProjectContactModal({
                   duration-300
 
                   hover:bg-[#c9112f]
+                  disabled:cursor-not-allowed
+                  disabled:opacity-60
                 "
               >
-                상담 신청하기
+                {isSubmitting ? "전송 중..." : "상담 신청하기"}
                 <Send size={15} strokeWidth={2} />
               </button>
+
+              {submitError && (
+                <p className="mt-3 text-center text-[12px] text-[#DE1334]">
+                  {submitError}
+                </p>
+              )}
 
               <p
                 className="

@@ -137,7 +137,7 @@ export default function Footer() {
                     sm:text-[13px]
                   "
                 >
-                  hello@madebyyoung.com
+                  jssa2468@naver.com
                 </a>
               </div>
 
@@ -170,39 +170,35 @@ export default function Footer() {
                 </p>
               </div>
 
-              {/* CONTACT BUTTON */}
+              {/* KAKAO CONTACT BUTTON */}
               <div className="flex items-end">
-                <Link
-                  href="/contact"
+                <a
+                  href="https://pf.kakao.com/_wbxniX/chat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="카카오톡으로 문의하기"
                   className="
-                    flex
-                    h-[38px]
-                    min-w-[112px]
-
-                    items-center
-                    justify-center
-
-                    rounded-full
-
-                    border
-                    border-black/60
-
-                    px-5
-
-                    font-gmarket
-                    text-[11px]
-                    font-semibold
-
-                    transition-all
-                    duration-300
-
-                    hover:border-[#de1334]
-                    hover:bg-[#de1334]
-                    hover:text-white
-                  "
+      flex
+      h-[38px]
+      min-w-[112px]
+      items-center
+      justify-center
+      rounded-full
+      border
+      border-black/60
+      px-5
+      font-gmarket
+      text-[11px]
+      font-semibold
+      transition-all
+      duration-300
+      hover:border-[#FEE500]
+      hover:bg-[#FEE500]
+      hover:text-[#191919]
+    "
                 >
-                  문의하기
-                </Link>
+                  카카오톡 문의
+                </a>
               </div>
             </div>
           </div>
