@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import PortfolioShowcase from "./PortfolioShowcase";
-
 /* =========================================================
    STATS
 ========================================================= */
@@ -550,12 +548,6 @@ export default function AboutProfileSection() {
           </div>
         </div>
       </div>
-
-      {/* =====================================================
-          PORTFOLIO
-      ===================================================== */}
-
-      <PortfolioShowcase />
     </section>
   );
 }

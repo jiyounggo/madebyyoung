@@ -94,6 +94,16 @@ const PORTFOLIO = [
     category: "CUSTOM E-COMMERCE",
     image: "/images/profile/work-16.png",
   },
+  {
+    title: "준앤제이",
+    category: "CHILDREN'S FASHION E-COMMERCE",
+    image: "/images/profile/work-18.png",
+  },
+  {
+    title: "바라스토",
+    category: "AI INDUSTRIAL SAFETY SOLUTION",
+    image: "/images/profile/work-17.png",
+  },
 ];
 
 /* =========================================================

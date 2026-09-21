@@ -10,9 +10,8 @@ const navItems = [
   { name: "HOME", href: "/#home" },
   { name: "SERVICES", href: "/#services" },
   { name: "PROCESS", href: "/#process" },
-  { name: "PORTFOLIO", href: "/#works" },
-  { name: "ABOUT", href: "/#about" },
-  { name: "INQUIRY", href: "/#inquiry" },
+  { name: "PORTFOLIO", href: "/#portfolio" },
+
   { name: "CONTACT", href: "/#contact" },
 ];
 
@@ -38,20 +37,7 @@ export default function Header() {
         duration: 0.8,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="
-    sticky
-    top-0
-    left-0
-    z-50
-    w-full
-
-    border-b
-    border-black/[0.05]
-
-    bg-white/90
-    shadow-[0_8px_30px_rgba(0,0,0,0.035)]
-    backdrop-blur-xl
-  "
+      className="sticky top-0 left-0 z-50 w-full border-b border-black/[0.05] bg-white/90 shadow-[0_8px_30px_rgba(0,0,0,0.035)] backdrop-blur-xl"
     >
       <div className="mx-auto flex h-[78px] w-full items-center justify-between px-[clamp(20px,4vw,72px)]">
         <Link

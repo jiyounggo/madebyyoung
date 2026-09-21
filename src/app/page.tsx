@@ -10,7 +10,7 @@ import AboutProfileSection from "@/components/home/AboutProfileSection";
 import ContactSection from "@/components/home/ContactSection";
 import TopBanner from "@/components/layout/TopBanner";
 import Footer from "@/components/layout/Footer";
-
+import PortfolioShowcase from "@/components/home/PortfolioShowcase";
 export const metadata: Metadata = {
   title: "MADE BY YOUNG | 맞춤형 홈페이지 제작",
 
@@ -33,37 +33,36 @@ export default function HomePage() {
         <section id="home">
           <HeroSection />
         </section>
-
         {/* SERVICES */}
         <section id="services" className="scroll-mt-[90px]">
           <ServiceSection />
         </section>
-
         {/* PROCESS */}
         <section id="process" className="scroll-mt-[90px]">
           <AboutProfileSection />
         </section>
-
-        {/* WORK */}
-        <section id="works" className="scroll-mt-[90px]">
-          <SeoBanner />
-        </section>
-
-        {/* ABOUT */}
-        <section id="about" className="scroll-mt-[90px]">
+        {/* PORTFOLIO */}
+        <section id="" className="scroll-mt-[120px]">
           <IdeaSection />
         </section>
-
+        {/* PORTFOLIO */}
+        <section id="portfolio" className="scroll-mt-[120px]">
+          <PortfolioShowcase />
+        </section>
+        {/* ABOUT */}
+        <section id="about" className="scroll-mt-[120px]">
+          <SeoBanner />
+        </section>
         {/* INQUIRY */}
         <section id="inquiry" className="scroll-mt-[90px]">
           <InquirySection />
         </section>
-
         {/* CONTACT */}
         <section id="contact" className="scroll-mt-[90px]">
           <ContactSection />
         </section>
       </main>
+
       <Footer />
     </>
   );
